@@ -30,7 +30,7 @@ This plugin saves the output for the track and release metadata to a text file. 
 This can be used to help develop release and track plugins by providing a log of the information passed to the plugin.
 
 
-## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/data_dumper/data_dumper.py)\]
+## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
 
 This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following:
 
