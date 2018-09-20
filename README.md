@@ -1,9 +1,5 @@
 # MusicBrainz Picard Plugins
 
-This repository hosts plugins for [MusicBrainz Picard](https://picard.musicbrainz.org/). If you're a plugin author and would like to include your plugin here, simply open a pull request.
+This branch of the picard-plugins repository hosts plugins for [MusicBrainz Picard](https://picard.musicbrainz.org/) that have been developed by Bob Swift (rdswift).  Not all of these plugins have been submitted to the [musicbrainz/picard-plugins](https://github.com/musicbrainz/picard-plugins) repository.  Some have been developed for personal use, and some specialty plugins have been developed on request or in response to discussion in the [MetaBrainz Community Forum](https://community.metabrainz.org/).
 
-Note that new plugins being added to the repository should be under the GNU General Public License version 2 ("GPL") or a license compatible with it. See https://www.gnu.org/licenses/license-list.html for a list of compatible licenses.
-
-## Development Notes
-
-The script `generate.py` will generate a file called `plugins.json`, which contains metadata about all the plugins in this repository. `plugins.json` is used by [picard-website](https://github.com/musicbrainz/picard-website) and Picard itself to display information about downloadable plugins.
+Note that all plugins in this branch of the repository are released under the GNU General Public License version 2 ("GPL") or a license compatible with it. See https://www.gnu.org/licenses/license-list.html for a list of compatible licenses.
