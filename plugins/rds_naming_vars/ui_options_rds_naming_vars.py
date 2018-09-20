@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+
+# Automatically generated - don't edit.
+# Use `python setup.py build_ui` to update it.
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+class Ui_RdsNamingVarsOptionsPage(object):
+    def setupUi(self, RdsNamingVarsOptionsPage):
+        RdsNamingVarsOptionsPage.setObjectName("RdsNamingVarsOptionsPage")
+        RdsNamingVarsOptionsPage.resize(283, 435)
+        self.vboxlayout = QtWidgets.QVBoxLayout(RdsNamingVarsOptionsPage)
+        self.vboxlayout.setObjectName("vboxlayout")
+        self.groupBox_1 = QtWidgets.QGroupBox(RdsNamingVarsOptionsPage)
+        self.groupBox_1.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.groupBox_1.sizePolicy().hasHeightForWidth())
+        self.groupBox_1.setSizePolicy(sizePolicy)
+        self.groupBox_1.setObjectName("groupBox_1")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_1)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.gridLayout = QtWidgets.QGridLayout()
+        self.gridLayout.setContentsMargins(-1, -1, -1, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_1_2 = QtWidgets.QLabel(self.groupBox_1)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_1_2.sizePolicy().hasHeightForWidth())
+        self.label_1_2.setSizePolicy(sizePolicy)
+        self.label_1_2.setObjectName("label_1_2")
+        self.gridLayout.addWidget(self.label_1_2, 0, 3, 1, 1)
+        self.trim_album_titles = QtWidgets.QCheckBox(self.groupBox_1)
+        self.trim_album_titles.setObjectName("trim_album_titles")
+        self.gridLayout.addWidget(self.trim_album_titles, 0, 0, 1, 1)
+        self.album_title_trim_size = QtWidgets.QSpinBox(self.groupBox_1)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.album_title_trim_size.sizePolicy().hasHeightForWidth())
+        self.album_title_trim_size.setSizePolicy(sizePolicy)
+        self.album_title_trim_size.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.album_title_trim_size.setSuffix("")
+        self.album_title_trim_size.setMinimum(20)
+        self.album_title_trim_size.setMaximum(255)
+        self.album_title_trim_size.setObjectName("album_title_trim_size")
+        self.gridLayout.addWidget(self.album_title_trim_size, 0, 2, 1, 1)
+        self.trim_track_titles = QtWidgets.QCheckBox(self.groupBox_1)
+        self.trim_track_titles.setObjectName("trim_track_titles")
+        self.gridLayout.addWidget(self.trim_track_titles, 1, 0, 1, 1)
+        self.track_title_trim_size = QtWidgets.QSpinBox(self.groupBox_1)
+        self.track_title_trim_size.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.track_title_trim_size.setMinimum(20)
+        self.track_title_trim_size.setMaximum(255)
+        self.track_title_trim_size.setObjectName("track_title_trim_size")
+        self.gridLayout.addWidget(self.track_title_trim_size, 1, 2, 1, 1)
+        self.label_1_1 = QtWidgets.QLabel(self.groupBox_1)
+        self.label_1_1.setObjectName("label_1_1")
+        self.gridLayout.addWidget(self.label_1_1, 1, 3, 1, 1)
+        self.verticalLayout_2.addLayout(self.gridLayout)
+        self.vboxlayout.addWidget(self.groupBox_1)
+        spacerItem = QtWidgets.QSpacerItem(181, 21, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.vboxlayout.addItem(spacerItem)
+
+        self.retranslateUi(RdsNamingVarsOptionsPage)
+        QtCore.QMetaObject.connectSlotsByName(RdsNamingVarsOptionsPage)
+
+    def retranslateUi(self, RdsNamingVarsOptionsPage):
+        _translate = QtCore.QCoreApplication.translate
+        self.groupBox_1.setTitle(_("Trim Titles"))
+        self.label_1_2.setText(_("characters"))
+        self.trim_album_titles.setText(_("Trim album titles to:"))
+        self.trim_track_titles.setText(_("Trim track titles to:"))
+        self.label_1_1.setText(_("characters"))
+
