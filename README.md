@@ -4,7 +4,7 @@ This branch of the picard-plugins repository hosts plugins for [MusicBrainz Pica
 
 Note that all plugins in this branch of the repository are released under the GNU General Public License version 2 ("GPL") or a license compatible with it. See https://www.gnu.org/licenses/license-list.html for a list of compatible licenses.
 
-# Available Plugins
+-------
 
 ## AlbumArtist Extension \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/albumartistextension/albumartistextension.py)\]
 
@@ -20,8 +20,9 @@ The information is provided in the following variables:
 * **_\_aaeSortPrimaryAlbumArtist_** = The sorted version of the first (primary) album artist.
 * **_\_aaeAlbumArtistCount_** = The number of artists comprising the album artist.
 
-PLEASE NOTE: Tagger scripts are required to make use of these hidden variables.
+**PLEASE NOTE**: Tagger scripts are required to make use of these hidden variables.
 
+-------
 
 ## Data Dumper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/data_dumper/data_dumper.py)\]
 
@@ -29,6 +30,7 @@ This plugin saves the output for the track and release metadata to a text file. 
 
 This can be used to help develop release and track plugins by providing a log of the information passed to the plugin.
 
+-------
 
 ## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
 
@@ -47,12 +49,13 @@ This plugin provides specialized album and track variables for use in naming scr
 * **_\_ANT_** = Album Name Trimmed
 * **_\_TNT_** = Track Name Trimmed
 
-PLEASE NOTE: Tagger scripts are required to make use of these hidden variables.
+**PLEASE NOTE**: Tagger scripts are required to make use of these hidden variables.
 
+-------
 
 ## Release Language Title \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/release_language_title/release_language_title.py)\]
 
 This plugin provides full language title for the release as a variable (_releaselanguagetitle) for use in naming scripts.
 
-PLEASE NOTE: Tagger scripts are required to make use of this hidden variable.
+**PLEASE NOTE**: Tagger scripts are required to make use of this hidden variable.
 
