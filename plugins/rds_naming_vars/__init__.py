@@ -23,18 +23,20 @@ PLUGIN_DESCRIPTION = '''
 This plugin provides specialized album and track variables for use in
 naming scripts. Note that standardized artist information is used for
 the Album Artist variables, and credited artist information is used for
-the Track Artist variables. The information is provided in the following:
+the Track Artist variables. The information is provided in the following,
+with examples based on the artist being a collection of three artists
+("Sarah Blackwood, Jenni Pleau & Emily Bones"):
 <br /><ul>
-<li>_PAA = Primary Album Artist
-<li>_PAAS = Primary Album Artist Sort
-<li>_FAA = Full Album Artist
-<li>_FAAS = Full Album Artist Sort
-<li>_FAAPS = Full Album Artist Primary Sort
-<li>_AAC = Album Artist(s) Count
-<li>_PTA = Primary Track Artist
-<li>_ATA = Additional Track Artist(s)
-<li>_FTA = Full Track Artist(s)
-<li>_TAC = Track Artist(s) Count
+<li>_PAA = Primary Album Artist (e.g. "Sarah Blackwood")
+<li>_PAAS = Primary Album Artist Sort (e.g. "Blackwood, Sarah")
+<li>_FAA = Full Album Artist (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
+<li>_FAAS = Full Album Artist Sort (e.g. "Blackwood, Sarah, Pleau, Jenni & Bones, Emily")
+<li>_FAAPS = Full Album Artist Primary Sort (e.g. "Blackwood, Sarah, Jenni Pleau & Emily Bones")
+<li>_AAC = Album Artist(s) Count (e.g. 3)
+<li>_PTA = Primary Track Artist (e.g. "Sarah Blackwood")
+<li>_ATA = Additional Track Artist(s) (e.g. "Jenni Pleau & Emily Bones")
+<li>_FTA = Full Track Artist(s) (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
+<li>_TAC = Track Artist(s) Count (e.g. 3)
 <li>_ANT = Album Name Trimmed
 <li>_TNT = Track Name Trimmed
 </ul>

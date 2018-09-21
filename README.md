@@ -34,18 +34,18 @@ This can be used to help develop release and track plugins by providing a log of
 
 ## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
 
-This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following:
+This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following, with examples based on the artist being a collection of three artists ("Sarah Blackwood, Jenni Pleau & Emily Bones"):
 
-* **_\_PAA_** = Primary Album Artist
-* **_\_PAAS_** = Primary Album Artist Sort
-* **_\_FAA_** = Full Album Artist
-* **_\_FAAS_** = Full Album Artist Sort
-* **_\_FAAPS_** = Full Album Artist Primary Sort
-* **_\_AAC_** = Album Artist(s) Count
-* **_\_PTA_** = Primary Track Artist
-* **_\_ATA_** = Additional Track Artist(s)
-* **_\_FTA_** = Full Track Artist(s)
-* **_\_TAC_** = Track Artist(s) Count
+* **_\_PAA_** = Primary Album Artist (e.g. "Sarah Blackwood")
+* **_\_PAAS_** = Primary Album Artist Sort (e.g. "Blackwood, Sarah")
+* **_\_FAA_** = Full Album Artist (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
+* **_\_FAAS_** = Full Album Artist Sort (e.g. "Blackwood, Sarah, Pleau, Jenni & Bones, Emily")
+* **_\_FAAPS_** = Full Album Artist Primary Sort (e.g. "Blackwood, Sarah, Jenni Pleau & Emily Bones")
+* **_\_AAC_** = Album Artist(s) Count (e.g. 3)
+* **_\_PTA_** = Primary Track Artist (e.g. "Sarah Blackwood")
+* **_\_ATA_** = Additional Track Artist(s) (e.g. "Jenni Pleau & Emily Bones")
+* **_\_FTA_** = Full Track Artist(s) (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
+* **_\_TAC_** = Track Artist(s) Count (e.g. 3)
 * **_\_ANT_** = Album Name Trimmed
 * **_\_TNT_** = Track Name Trimmed
 
