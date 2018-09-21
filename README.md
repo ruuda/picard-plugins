@@ -55,7 +55,7 @@ This plugin provides specialized album and track variables for use in naming scr
 
 ## Release Language Title \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/release_language_title/release_language_title.py)\]
 
-This plugin provides full language title for the release as a variable (_releaselanguagetitle) for use in naming scripts.
+This plugin provides full language title for the release as a variable (_releaselanguagetitle) for use in naming scripts.  See the [discussion](https://community.metabrainz.org/t/help-with-file-naming-with-special-rule-for-soundtracks/398631) on the MetaBrainz Community Forum.
 
 **PLEASE NOTE**: Tagger scripts are required to make use of this hidden variable.
 
