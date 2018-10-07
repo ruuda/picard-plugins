@@ -44,7 +44,7 @@ PLEASE NOTE: Tagger scripts are required to make use of these hidden
 variables.
 '''
 
-PLUGIN_VERSION = "0.1"
+PLUGIN_VERSION = "0.2"
 PLUGIN_API_VERSIONS = ["2.0"]
 PLUGIN_LICENSE = "GPL-2.0 or later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -61,7 +61,7 @@ def rds_make_album_vars(album, album_metadata, release_metadata):
         TITLE_LENGTH = config.setting["album_title_trim_size"]
     else:
         TITLE_LENGTH = 0
-    album_id = release_metadata['id']
+    album_id = release_metadata['id'] if release_metadata else 'No Album ID'
     album_title = release_metadata['title']
     if config.setting["trim_album_titles"] and TITLE_LENGTH and len(album_title) > TITLE_LENGTH:
         album_title = album_title[:TITLE_LENGTH] + '...'
@@ -130,7 +130,7 @@ def rds_make_track_vars(album, album_metadata, track_metadata, release_metadata)
         TITLE_LENGTH = config.setting["track_title_trim_size"]
     else:
         TITLE_LENGTH = 0
-    album_id = release_metadata['id']
+    album_id = release_metadata['id'] if release_metadata else 'No Album ID'
     track_title = track_metadata['title']
     if config.setting["trim_track_titles"] and TITLE_LENGTH and len(track_title) > TITLE_LENGTH:
         track_title = track_title[:TITLE_LENGTH] + '...'
