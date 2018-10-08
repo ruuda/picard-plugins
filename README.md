@@ -32,6 +32,29 @@ This can be used to help develop release and track plugins by providing a log of
 
 -------
 
+## Format Performer Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/format_performer_tags/format_performer_tags.zip)\]
+
+This plugin allows the user to configure the way that (instrument) performer tags are written. Once installed a settings page will be added to Picard's options, which is where the plugin is configured.
+
+These settings will determine the format for any Performer tags prepared. The format is divided into five parts: the performer; the instrument; and three user selectable groups for the extra information. This is set out as:
+
+{Group\_1} Instrument {Group\_2}: Performer {Group\_3}
+
+You can select the group in which each of the extra information words appears.  These extra information words are "additional", "guest", "minor" and "solo".
+
+For each of the groups you can select the starting  and ending characters, and whether the group is sorted in ascending or descending order.
+
+For example, a performer relationship for Billy Preston playing a guest solo on the Hammond organ could be saved in any of the following formats:
+
+* Performer [guest solo hammond organ]: Billy Preston
+* Performer [solo hammond organ]: Billy Preston (guest)
+* Performer [hammond organ, solo]: Billy Preston (guest)
+* Performer [hammond organ]: Billy Preston (guest solo)
+
+This shows only a few examples of the many possible displays that can be configured.
+
+-------
+
 ## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
 
 This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following, with examples based on the artist being a collection of three artists ("Sarah Blackwood, Jenni Pleau & Emily Bones"):
