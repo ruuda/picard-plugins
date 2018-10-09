@@ -27,7 +27,7 @@ each of the tracks.  The format of the resulting tags can be customized
 in the option settings page.
 '''
 
-PLUGIN_VERSION = "0.1"
+PLUGIN_VERSION = "0.2"
 PLUGIN_API_VERSIONS = ["2.0"]
 PLUGIN_LICENSE = "GPL-2.0 or later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -41,7 +41,7 @@ from picard.plugins.format_performer_tags.ui_options_format_performer_tags impor
 
 performers_split = re.compile(r", | and ").split
 
-WORD_LIST = ['guest', 'solo', 'additional', 'minor']
+WORD_LIST = ['guest', 'solo', 'additional', 'minor', 'lead', 'background']
 
 def format_performer_tags(album, metadata, *args):
     word_dict = {}
@@ -52,8 +52,6 @@ def format_performer_tags(album, metadata, *args):
         if not subkey:
             continue
         instruments = performers_split(subkey)
-        if len(instruments) == 1:
-            continue
         log.debug("%s: Formatting Performer [%s]",
                   PLUGIN_NAME,
                   subkey,
@@ -69,19 +67,19 @@ def format_performer_tags(album, metadata, *args):
         display_group = {}
         for group_number in range(1, 4):
             if groups[group_number]:
-                #log.debug("%s: groups[%s]: %s", PLUGIN_NAME, group_number, groups[group_number],)
+                log.debug("%s: groups[%s]: %s", PLUGIN_NAME, group_number, groups[group_number],)
                 groups[group_number].sort(reverse=config.setting["format_group_{0}_sort_desc".format(group_number)])
                 display_group[group_number] = config.setting["format_group_{0}_start_char".format(group_number)] + " ".join(groups[group_number]) + config.setting["format_group_{0}_end_char".format(group_number)]
                 display_group[group_number] = display_group[group_number] + " " if group_number < 2 else " " + display_group[group_number]
             else:
                 display_group[group_number] = ""
         log.debug("%s: display_group: %s", PLUGIN_NAME, display_group,)
+        del metadata[key]
         for instrument in instruments:
             newkey = '%s:%s%s%s' % (mainkey, display_group[1], instrument, display_group[2])
-            #log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
+            log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
             for value in values:
                 metadata.add_unique(newkey, value + display_group[3])
-        del metadata[key]
 
 
 class FormatPerformerTagsOptionsPage(OptionsPage):
@@ -95,6 +93,8 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         config.IntOption("setting", "format_group_guest", 1),
         config.IntOption("setting", "format_group_minor", 1),
         config.IntOption("setting", "format_group_solo", 1),
+        config.IntOption("setting", "format_group_lead", 1),
+        config.IntOption("setting", "format_group_background", 1),
         config.TextOption("setting", "format_group_1_start_char", ''),
         config.TextOption("setting", "format_group_1_end_char", ''),
         config.BoolOption("setting", "format_group_1_sort_desc", False),
@@ -116,6 +116,8 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         self.ui.format_group_guest.setValue(config.setting["format_group_guest"])
         self.ui.format_group_minor.setValue(config.setting["format_group_minor"])
         self.ui.format_group_solo.setValue(config.setting["format_group_solo"])
+        self.ui.format_group_lead.setValue(config.setting["format_group_lead"])
+        self.ui.format_group_background.setValue(config.setting["format_group_background"])
         self.ui.format_group_1_start_char.setText(config.setting["format_group_1_start_char"])
         self.ui.format_group_1_end_char.setText(config.setting["format_group_1_end_char"])
         self.ui.format_group_1_sort_desc.setChecked(config.setting["format_group_1_sort_desc"])
@@ -131,6 +133,8 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         config.setting["format_group_guest"] = self.ui.format_group_guest.value()
         config.setting["format_group_minor"] = self.ui.format_group_minor.value()
         config.setting["format_group_solo"] = self.ui.format_group_solo.value()
+        config.setting["format_group_lead"] = self.ui.format_group_lead.value()
+        config.setting["format_group_background"] = self.ui.format_group_background.value()
         config.setting["format_group_1_start_char"] = self.ui.format_group_1_start_char.text()
         config.setting["format_group_1_end_char"] = self.ui.format_group_1_end_char.text()
         config.setting["format_group_1_sort_desc"] = self.ui.format_group_1_sort_desc.isChecked()
