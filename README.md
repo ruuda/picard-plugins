@@ -37,7 +37,7 @@ This can be used to help develop release and track plugins by providing a log of
 This plugin allows the user to configure the way that instrument and vocal performer tags are written. Once
 installed a settings page will be added to Picard's options, which is where the plugin is configured.
 
-Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/format_performer_tags/README.md) for more information.
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/format_performer_tags/docs/README.md) for more information.
 
 -------
 

@@ -77,7 +77,6 @@ def format_performer_tags(album, metadata, *args):
                 if not group_separator:
                     group_separator = " "
                 display_group[group_number] = config.setting["format_group_{0}_start_char".format(group_number)] + group_separator.join(groups[group_number]) + config.setting["format_group_{0}_end_char".format(group_number)]
-                #display_group[group_number] = display_group[group_number] + " " if group_number < 3 else " " + display_group[group_number]
             else:
                 display_group[group_number] = ""
         if DEV_TESTING:
@@ -103,7 +102,6 @@ def format_performer_tags(album, metadata, *args):
                 if not group_separator:
                     group_separator = " "
                 display_group[group_number] = config.setting["format_group_{0}_start_char".format(group_number)] + group_separator.join(temp_group) + config.setting["format_group_{0}_end_char".format(group_number)]
-                #display_group[group_number] = display_group[group_number] + " " if group_number < 3 else " " + display_group[group_number]
 
             newkey = ('%s:%s%s%s%s' % (mainkey, display_group[1], instrument, display_group[2], display_group[3],)).strip()
             log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
