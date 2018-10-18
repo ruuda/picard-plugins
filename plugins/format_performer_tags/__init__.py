@@ -103,10 +103,10 @@ def format_performer_tags(album, metadata, *args):
                     group_separator = " "
                 display_group[group_number] = config.setting["format_group_{0}_start_char".format(group_number)] + group_separator.join(temp_group) + config.setting["format_group_{0}_end_char".format(group_number)]
 
-            newkey = ('%s:%s%s%s%s' % (mainkey, display_group[1], instrument, display_group[2], display_group[3],)).strip()
+            newkey = ('%s:%s%s%s%s' % (mainkey, display_group[1], instrument, display_group[2], display_group[3],))
             log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
             for value in values:
-                metadata.add_unique(newkey, (value + display_group[4]).strip())
+                metadata.add_unique(newkey, (value + display_group[4]))
 
 
 class FormatPerformerTagsOptionsPage(OptionsPage):
