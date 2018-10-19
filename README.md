@@ -41,6 +41,15 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 -------
 
+## Performer Tag Replace \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/performer_tag_replace/performer_tag_replace.zip)\]
+
+This plugin provides the ability to replace text in performer tags. Once installed a settings page will be
+added to Picard's options, which is where the plugin is configured.
+
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/performer_tag_replace/docs/README.md) for more information.
+
+-------
+
 ## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
 
 This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following, with examples based on the artist being a collection of three artists ("Sarah Blackwood, Jenni Pleau & Emily Bones"):
