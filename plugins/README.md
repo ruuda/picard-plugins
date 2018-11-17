@@ -41,6 +41,15 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 -------
 
+## Get Eval Function \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/get_eval/get_eval.zip)\]
+This plugin provides a new scripting function `$get_eval()` that allows the user to evaluate specified python code within Picard and return the results as a string for use within scripts.
+
+This allows access to all metadata fields and the ability to use native python processing commands directly from a script without having to create and load additional plugins. 
+
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/get_eval/README.md) for more information.
+
+-------
+
 ## Performer Tag Replace \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/performer_tag_replace/performer_tag_replace.zip)\]
 
 This plugin provides the ability to replace text in performer tags. Once installed a settings page will be
