@@ -32,6 +32,8 @@ PLUGIN_API_VERSIONS = ["2.0"]
 PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
 
+PLUGIN_USER_GUIDE_URL = "https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/format_performer_tags/docs/README.md"
+
 DEV_TESTING = False
 
 import re
@@ -80,7 +82,9 @@ def rewrite_tag(key, values, metadata, word_dict, settings):
             group_separator = settings["format_group_{0}_sep_char".format(group_number)]
             if not group_separator:
                 group_separator = " "
-            display_group[group_number] = settings["format_group_{0}_start_char".format(group_number)] + group_separator.join(groups[group_number]) + settings["format_group_{0}_end_char".format(group_number)]
+            display_group[group_number] = settings["format_group_{0}_start_char".format(group_number)] \
+                + group_separator.join(groups[group_number]) \
+                + settings["format_group_{0}_end_char".format(group_number)]
         else:
             display_group[group_number] = ""
     if DEV_TESTING:
@@ -105,7 +109,9 @@ def rewrite_tag(key, values, metadata, word_dict, settings):
             group_separator = settings["format_group_{0}_sep_char".format(group_number)]
             if not group_separator:
                 group_separator = " "
-            display_group[group_number] = settings["format_group_{0}_start_char".format(group_number)] + group_separator.join(temp_group) + settings["format_group_{0}_end_char".format(group_number)]
+            display_group[group_number] = settings["format_group_{0}_start_char".format(group_number)] \
+                + group_separator.join(temp_group) \
+                + settings["format_group_{0}_end_char".format(group_number)]
 
         newkey = ('%s:%s%s%s%s' % (mainkey, display_group[1], instrument, display_group[2], display_group[3],))
         log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
@@ -245,6 +251,14 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         self.ui.format_group_4_end_char.setText(config.setting["format_group_4_end_char"])
         self.ui.format_group_4_sep_char.setText(config.setting["format_group_4_sep_char"])
         self.update_examples()
+
+        # TODO: Modify self.format_description in ui_options_format_performer_tags.py to include a placeholder
+        #       such as {user_guide_url} so that the translated string can be formatted to include the value
+        #       of PLUGIN_USER_GUIDE_URL to dynamically set the link while not requiring retranslation if the
+        #       link changes.  Preliminary code something like:
+        #
+        #       temp = (self.ui.format_description.text).format(user_guide_url=PLUGIN_USER_GUIDE_URL,)
+        #       self.ui.format_description.setText(temp)
 
 
     def save(self):
