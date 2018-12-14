@@ -18,7 +18,7 @@
 # 02110-1301, USA.
 
 PLUGIN_NAME = 'Format Performer Tags'
-PLUGIN_AUTHOR = 'Bob Swift (rdswift)'
+PLUGIN_AUTHOR = 'Bob Swift (rdswift), Philipp Wolfer'
 PLUGIN_DESCRIPTION = '''
 This plugin provides options with respect to the formatting of performer
 tags.  It has been developed using the 'Standardise Performers' plugin by
@@ -27,9 +27,9 @@ each of the tracks.  The format of the resulting tags can be customized
 in the option settings page.
 '''
 
-PLUGIN_VERSION = "0.05"
+PLUGIN_VERSION = "0.6"
 PLUGIN_API_VERSIONS = ["2.0"]
-PLUGIN_LICENSE = "GPL-2.0 or later"
+PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
 
 DEV_TESTING = False
