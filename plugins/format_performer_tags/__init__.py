@@ -36,7 +36,7 @@ DEV_TESTING = False
 
 import re
 from picard import config, log
-from picard.metadata import register_track_metadata_processor
+from picard.metadata import Metadata, register_track_metadata_processor
 from picard.plugin import PluginPriority
 from picard.ui.options import register_options_page, OptionsPage
 from picard.plugins.format_performer_tags.ui_options_format_performer_tags import Ui_FormatPerformerTagsOptionsPage
@@ -53,10 +53,9 @@ def get_word_dict(settings):
     return word_dict
 
 
-def rewrite_tag(key, values, word_dict, settings):
+def rewrite_tag(key, values, metadata, word_dict, settings):
     mainkey, subkey = key.split(':', 1)
     if not subkey:
-        yield (None, None)
         return
     log.debug("%s: Formatting Performer [%s: %s]", PLUGIN_NAME, subkey, values,)
     instruments = performers_split(subkey)
@@ -86,6 +85,7 @@ def rewrite_tag(key, values, word_dict, settings):
             display_group[group_number] = ""
     if DEV_TESTING:
         log.debug("%s: display_group: %s", PLUGIN_NAME, display_group,)
+    metadata.delete(key)
     for instrument in instruments:
         if DEV_TESTING:
             log.debug("%s: instrument (second pass): '%s'", PLUGIN_NAME, instrument,)
@@ -110,18 +110,13 @@ def rewrite_tag(key, values, word_dict, settings):
         newkey = ('%s:%s%s%s%s' % (mainkey, display_group[1], instrument, display_group[2], display_group[3],))
         log.debug("%s: newkey: %s", PLUGIN_NAME, newkey,)
         for value in values:
-            yield((newkey, (value + display_group[4])))
+            metadata.add_unique(newkey, (value + display_group[4]))
 
 
 def format_performer_tags(album, metadata, *args):
     word_dict = get_word_dict(config.setting)
     for key, values in list(filter(lambda filter_tuple: filter_tuple[0].startswith('performer:') or filter_tuple[0].startswith('~performersort:'), metadata.rawitems())):
-        for newkey, newvalues in rewrite_tag(key, values, word_dict, config.setting):
-            if not newkey:
-                continue
-            metadata.add_unique(newkey, newvalues)
-        else:
-            metadata.delete(key)
+        rewrite_tag(key, values, metadata, word_dict, config.setting)
 
 
 class FormatPerformerTagsOptionsPage(OptionsPage):
@@ -181,7 +176,6 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         self.ui.format_group_2_end_char.editingFinished.connect(self.update_examples)
         self.ui.format_group_3_end_char.editingFinished.connect(self.update_examples)
         self.ui.format_group_4_end_char.editingFinished.connect(self.update_examples)
-        self.update_examples()
 
     def load(self):
         # Enable external link
@@ -250,6 +244,7 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         self.ui.format_group_4_start_char.setText(config.setting["format_group_4_start_char"])
         self.ui.format_group_4_end_char.setText(config.setting["format_group_4_end_char"])
         self.ui.format_group_4_sep_char.setText(config.setting["format_group_4_sep_char"])
+        self.update_examples()
 
 
     def save(self):
@@ -313,21 +308,36 @@ class FormatPerformerTagsOptionsPage(OptionsPage):
         settings = {}
         self._set_settings(settings)
         word_dict = get_word_dict(settings)
-        instruments_example = self.build_example("additional solo guest guitar", ["Jimmy Page"], word_dict, settings)
+
+        instruments_credits = {
+            "guitar": ["Johnny Flux", "John Watson"],
+            "guest guitar": ["Jimmy Page"],
+            "additional guest solo guitar": ["Jimmy Page"],
+        }
+        instruments_example = self.build_example(instruments_credits, word_dict, settings)
         self.ui.example_instruments.setText(instruments_example)
-        vocals_example = self.build_example("additional solo guest lead vocals", ["Robert Plant"], word_dict, settings)
+
+        vocals_credits = {
+            "additional solo lead vocals": ["Robert Plant"],
+            "additional solo guest lead vocals": ["Sandy Denny"],
+        }
+        vocals_example = self.build_example(vocals_credits, word_dict, settings)
         self.ui.example_vocals.setText(vocals_example)
 
     @staticmethod
-    def build_example(key, values, word_dict, settings):
+    def build_example(credits, word_dict, settings):
         prefix = "performer:"
-        example = list(rewrite_tag(prefix + key, values, word_dict, settings))
-        if not example:
-            return ""
-        result = ": ".join(list(example)[0])
-        if result.startswith(prefix):
-            result = result[len(prefix):]
-        return result
+        metadata = Metadata()
+        for key, values in credits.items():
+            rewrite_tag(prefix + key, values, metadata, word_dict, settings)
+
+        examples = []
+        for key, values in metadata.rawitems():
+            credit = "%s: %s" % (key, ", ".join(values))
+            if credit.startswith(prefix):
+                credit = credit[len(prefix):]
+            examples.append(credit)
+        return "\n".join(examples)
 
 
 # Register the plugin to run at a HIGH priority.
