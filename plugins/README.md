@@ -6,19 +6,39 @@ Note that all plugins in this branch of the repository are released under the GN
 
 -------
 
-## AlbumArtist Extension \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/albumartistextension/albumartistextension.py)\]
+## Artist Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/artist_variables/artist_variables.zip)\]
 
-This plugin provides standardized, credited and sorted artist information for the album artist.  This is useful when your tagging or renaming scripts require both the standardized artist name and the credited artist name, or more detailed information about the album artists.
+This plugin provides specialized album and track variables for use in naming scripts, without any additional calls to the MusicBrainz website api for additional information. The information is provided in the following variables:
 
-The information is provided in the following variables:
+### Album Variables
 
-* **_\_aaeStdAlbumArtists_** = The standardized version of the album artists.
-* **_\_aaeCredAlbumArtists_** = The credited version of the album artists.
-* **_\_aaeSortAlbumArtists_** = The sorted version of the album artists.
-* **_\_aaeStdPrimaryAlbumArtist_** = The standardized version of the first (primary) album artist.
-* **_\_aaeCredPrimaryAlbumArtist_** = The credited version of the first (primary) album artist.
-* **_\_aaeSortPrimaryAlbumArtist_** = The sorted version of the first (primary) album artist.
-* **_\_aaeAlbumArtistCount_** = The number of artists comprising the album artist.
+* **_PriAArtistID** - The ID of the primary / first album artist listed
+* **_PriAArtistStd** - The primary / first album artist listed (standardized)
+* **_PriAArtistCred** - The primary / first album artist listed (as credited)
+* **_PriAArtistSort** - The primary / first album artist listed (sort name)
+* **_AdditionalAArtistID** - The IDs of all album artists listed except for the primary / first artist, separated by a semicolon and space
+* **_AdditionalAArtistStd** - All album artists listed (standardized) except for the primary / first artist, separated with strings provided from the release entry
+* **_AdditionalAArtistCred** - All album artists listed (as credited) except for the primary / first artist, separated with strings provided from the release entry
+* **_FullAArtistStd** - All album artists listed (standardized), separated with strings provided from the release entry
+* **_FullAArtistCred** - All album artists listed (as credited), separated with strings provided from the release entry
+* **_FullAArtistSort** - All album artists listed (sort names), separated with strings provided from the release entry
+* **_FullAArtistPriSort** - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated with strings provided from the release entry
+* **_AArtistCount** - The number of artists listed as album artists
+
+### Track Variables
+
+* **_PriTArtistID** - The ID of the primary / first track artist listed
+* **_PriTArtistStd** - The primary / first track artist listed (standardized)
+* **_PriTArtistCred** - The primary / first track artist listed (as credited)
+* **_PriTArtistSort** - The primary / first track artist listed (sort name)
+* **_AdditionalTArtistID** - The IDs of all track artists listed except for the primary / first artist, separated by a semicolon and space
+* **_AdditionalTArtistStd** - All track artists listed (standardized) except for the primary / first artist, separated with strings provided from the track entry
+* **_AdditionalTArtistCred** - All track artists listed (as credited) except for the primary / first artist, separated with strings provided from the track entry
+* **_FullTArtistStd** - All track artists listed (standardized), separated with strings provided from the track entry
+* **_FullTArtistCred** - All track artists listed (as credited), separated with strings provided from the track entry
+* **_FullTArtistSort** - All track artists listed (sort names), separated with strings provided from the track entry
+* **_FullTArtistPriSort** - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated with strings provided from the track entry
+* **_TArtistCount** - The number of artists listed as track artists
 
 **PLEASE NOTE**: Tagger scripts are required to make use of these hidden variables.
 
@@ -56,27 +76,6 @@ This plugin provides the ability to replace text in performer tags. Once install
 added to Picard's options, which is where the plugin is configured.
 
 Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/performer_tag_replace/docs/README.md) for more information.
-
--------
-
-## RDS Naming Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/rds_naming_vars/rds_naming_vars.zip)\]
-
-This plugin provides specialized album and track variables for use in naming scripts. Note that standardized artist information is used for the Album Artist variables, and credited artist information is used for the Track Artist variables. The information is provided in the following, with examples based on the artist being a collection of three artists ("Sarah Blackwood, Jenni Pleau & Emily Bones"):
-
-* **_\_PAA_** = Primary Album Artist (e.g. "Sarah Blackwood")
-* **_\_PAAS_** = Primary Album Artist Sort (e.g. "Blackwood, Sarah")
-* **_\_FAA_** = Full Album Artist (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
-* **_\_FAAS_** = Full Album Artist Sort (e.g. "Blackwood, Sarah, Pleau, Jenni & Bones, Emily")
-* **_\_FAAPS_** = Full Album Artist Primary Sort (e.g. "Blackwood, Sarah, Jenni Pleau & Emily Bones")
-* **_\_AAC_** = Album Artist(s) Count (e.g. 3)
-* **_\_PTA_** = Primary Track Artist (e.g. "Sarah Blackwood")
-* **_\_ATA_** = Additional Track Artist(s) (e.g. "Jenni Pleau & Emily Bones")
-* **_\_FTA_** = Full Track Artist(s) (e.g. "Sarah Blackwood, Jenni Pleau & Emily Bones")
-* **_\_TAC_** = Track Artist(s) Count (e.g. 3)
-* **_\_ANT_** = Album Name Trimmed
-* **_\_TNT_** = Track Name Trimmed
-
-**PLEASE NOTE**: Tagger scripts are required to make use of these hidden variables.
 
 -------
 
