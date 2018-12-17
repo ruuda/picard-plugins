@@ -64,7 +64,7 @@ variables.
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/artist_variables/docs/README.md">user guide</a> on GitHub for more information.
 '''
 
-PLUGIN_VERSION = "0.2"
+PLUGIN_VERSION = "0.3"
 PLUGIN_API_VERSIONS = ["2.0", "2.1"]
 PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -76,11 +76,13 @@ from picard.metadata import (register_album_metadata_processor,
                              register_track_metadata_processor)
 from picard.plugin import PluginPriority
 
-def make_album_vars(album, album_metadata, release_metadata):
-    metadata_type = 'release'
-    album_id = release_metadata['id'] if release_metadata else 'No Album ID'
+
+def process_artists(album_id, source_metadata, destination_metadata, source_type):
+    metadata_type = 'release' if source_type == 'A' else 'track'
     # Test for valid metadata node for the release
-    if 'artist-credit' in release_metadata:
+    # The 'artist-credit' key should always be there.
+    # This check is to avoid a runtime error if it doesn't exist for some reason.
+    if 'artist-credit' in source_metadata:
         # Initialize variables to default values
         sort_pri_artist = ""
         std_artist = ""
@@ -90,9 +92,7 @@ def make_album_vars(album, album_metadata, release_metadata):
         additional_cred_artist = ""
         artist_count = 0
         additional_artist_ids = []
-        # The 'artist-credit' key should always be there.
-        # This check is to avoid a runtime error if it doesn't exist for some reason.
-        for artist_credit in release_metadata['artist-credit']:
+        for artist_credit in source_metadata['artist-credit']:
             # Initialize temporary variables for each loop.
             temp_std_name = ""
             temp_cred_name = ""
@@ -132,10 +132,10 @@ def make_album_vars(album, album_metadata, release_metadata):
             sort_artist += temp_sort_name + temp_phrase
             if artist_count < 1:
                 if temp_id:
-                    album_metadata["~PriAArtistID"] = temp_id
-                album_metadata["~PriAArtistStd"] = temp_std_name
-                album_metadata["~PriAArtistCred"] = temp_cred_name
-                album_metadata["~PriAArtistSort"] = temp_sort_name
+                    destination_metadata["~Pri{0}ArtistID".format(source_type,)] = temp_id
+                destination_metadata["~Pri{0}ArtistStd".format(source_type,)] = temp_std_name
+                destination_metadata["~Pri{0}ArtistCred".format(source_type,)] = temp_cred_name
+                destination_metadata["~Pri{0}ArtistSort".format(source_type,)] = temp_sort_name
                 sort_pri_artist += temp_sort_name + temp_phrase
             else:
                 if temp_id:
@@ -147,109 +147,33 @@ def make_album_vars(album, album_metadata, release_metadata):
     else:
         metadata_error(album_id, 'artist-credit', metadata_type)
     if additional_artist_ids:
-        album_metadata["~AdditionalAArtistID"] = "; ".join(additional_artist_ids)
+        destination_metadata["~Additional{0}ArtistID".format(source_type,)] = "; ".join(additional_artist_ids)
     if std_artist:
-        album_metadata["~FullAArtistStd"] = std_artist
+        destination_metadata["~Full{0}ArtistStd".format(source_type,)] = std_artist
     if cred_artist:
-        album_metadata["~FullAArtistCred"] = cred_artist
+        destination_metadata["~Full{0}ArtistCred".format(source_type,)] = cred_artist
     if additional_std_artist:
-        album_metadata["~AdditionalAArtistStd"] = additional_std_artist
+        destination_metadata["~Additional{0}ArtistStd".format(source_type,)] = additional_std_artist
     if additional_cred_artist:
-        album_metadata["~AdditionalAArtistCred"] = additional_cred_artist
+        destination_metadata["~Additional{0}ArtistCred".format(source_type,)] = additional_cred_artist
     if sort_pri_artist:
-        album_metadata["~FullAArtistPriSort"] = sort_pri_artist
+        destination_metadata["~Full{0}ArtistPriSort".format(source_type,)] = sort_pri_artist
     if sort_artist:
-        album_metadata["~FullAArtistSort"] = sort_artist
+        destination_metadata["~Full{0}ArtistSort".format(source_type,)] = sort_artist
     if artist_count:
-        album_metadata["~AArtistCount"] = artist_count
+        destination_metadata["~{0}ArtistCount".format(source_type,)] = artist_count
+    return None
+
+
+def make_album_vars(album, album_metadata, release_metadata):
+    album_id = release_metadata['id'] if release_metadata else 'No Album ID'
+    process_artists(album_id, release_metadata, album_metadata, 'A')
     return None
 
 
 def make_track_vars(album, album_metadata, track_metadata, release_metadata):
-    metadata_type = 'track'
     album_id = release_metadata['id'] if release_metadata else 'No Album ID'
-    # Test for valid metadata node for the release
-    if 'artist-credit' in track_metadata:
-        # Initialize variables to default values
-        additional_std_artist = ""
-        additional_cred_artist = ""
-        full_std_artist = ""
-        full_cred_artist = ""
-        sort_artist = ""
-        sort_pri_artist = ""
-        artist_count = 0
-        additional_artist_ids = []
-        # The 'artist-credit' key should always be there.
-        # This check is to avoid a runtime error if it doesn't exist for some reason.
-        for artist_credit in track_metadata['artist-credit']:
-            # Initialize temporary variables for each loop.
-            temp_cred_name = ""
-            temp_std_name = ""
-            temp_sort_name = ""
-            temp_phrase = ""
-            temp_id = ""
-            # Check if there is a 'joinphrase' specified.
-            if 'joinphrase' in artist_credit:
-                temp_phrase = artist_credit['joinphrase']
-            else:
-                metadata_error(album_id, 'artist-credit.joinphrase', metadata_type)
-            # Check if there is a 'name' specified.
-            if 'name' in artist_credit:
-                temp_cred_name = artist_credit['name']
-            else:
-                metadata_error(album_id, 'artist-credit.name', metadata_type)
-            if 'artist' in artist_credit:
-                # Check if there is an 'id' specified.
-                if 'id' in artist_credit['artist']:
-                    temp_id = artist_credit['artist']['id']
-                else:
-                    metadata_error(album_id, 'artist-credit.artist.id', metadata_type)
-                # Check if there is a 'name' specified.
-                if 'name' in artist_credit['artist']:
-                    temp_std_name = artist_credit['artist']['name']
-                else:
-                    metadata_error(album_id, 'artist-credit.artist.name', metadata_type)
-                if 'sort-name' in artist_credit['artist']:
-                    temp_sort_name = artist_credit['artist']['sort-name']
-                else:
-                    metadata_error(album_id, 'artist-credit.artist.sort-name', metadata_type)
-            else:
-                metadata_error(album_id, 'artist-credit.artist', metadata_type)
-            full_std_artist += temp_std_name + temp_phrase
-            full_cred_artist += temp_cred_name + temp_phrase
-            sort_artist += temp_sort_name + temp_phrase
-            if artist_count < 1:
-                if temp_id:
-                    album_metadata["~PriTArtistID"] = temp_id
-                album_metadata["~PriTArtistStd"] = temp_std_name
-                album_metadata["~PriTArtistCred"] = temp_cred_name
-                album_metadata["~PriTArtistSort"] = temp_sort_name
-                sort_pri_artist += temp_sort_name + temp_phrase
-            else:
-                if temp_id:
-                    additional_artist_ids.append(temp_id,)
-                sort_pri_artist += temp_std_name + temp_phrase
-                additional_std_artist += temp_std_name + temp_phrase
-                additional_cred_artist += temp_cred_name + temp_phrase
-            artist_count += 1
-    else:
-        metadata_error(album_id, 'artist-credit', metadata_type)
-    if additional_artist_ids:
-        album_metadata["~AdditionalTArtistID"] = "; ".join(additional_artist_ids)
-    if full_std_artist:
-        album_metadata["~FullTArtistStd"] = full_std_artist
-    if full_cred_artist:
-        album_metadata["~FullTArtistCred"] = full_cred_artist
-    if additional_std_artist:
-        album_metadata["~AdditionalTAartistStd"] = additional_std_artist
-    if additional_cred_artist:
-        album_metadata["~AdditionalTArtistCred"] = additional_cred_artist
-    if sort_pri_artist:
-        album_metadata["~FullTArtistPriSort"] = sort_pri_artist
-    if sort_artist:
-        album_metadata["~FullTArtistSort"] = sort_artist
-    if artist_count:
-        album_metadata["~TArtistCount"] = artist_count
+    process_artists(album_id, track_metadata, album_metadata, 'T')
     return None
 
 
