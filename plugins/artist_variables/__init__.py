@@ -24,7 +24,7 @@ This plugin provides specialized album and track variables for use in
 naming scripts. It combines the functionality of the "Album Artist
 Extension" and "RDS Naming Variables" plugins, although the variables
 are provided with different names.  This will require changes to existing
-scripts that previously used these plugins.
+scripts that used these previous plugins.
 <br /><br />
 The variables provided are:
 <br /><br />
@@ -64,10 +64,12 @@ variables.
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/artist_variables/docs/README.md">user guide</a> on GitHub for more information.
 '''
 
-PLUGIN_VERSION = "0.1"
-PLUGIN_API_VERSIONS = ["2.0"]
-PLUGIN_LICENSE = "GPL-2.0 or later"
+PLUGIN_VERSION = "0.2"
+PLUGIN_API_VERSIONS = ["2.0", "2.1"]
+PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
+
+PLUGIN_USER_GUIDE_URL = "https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/artist_variables/docs/README.md"
 
 from picard import config, log
 from picard.metadata import (register_album_metadata_processor,
@@ -212,7 +214,7 @@ def make_track_vars(album, album_metadata, track_metadata, release_metadata):
                 else:
                     metadata_error(album_id, 'artist-credit.artist.sort-name', metadata_type)
             else:
-                metadata_error(album_id, 'artist-credit.artist')
+                metadata_error(album_id, 'artist-credit.artist', metadata_type)
             full_std_artist += temp_std_name + temp_phrase
             full_cred_artist += temp_cred_name + temp_phrase
             sort_artist += temp_sort_name + temp_phrase
