@@ -6,6 +6,23 @@ Note that all plugins in this branch of the repository are released under the GN
 
 -------
 
+## Additional Artists Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/additional_artists_variables/additional_artists_variables.zip)\]
+
+This plugin provides specialized album and track variables for use in naming scripts. It is based on the
+"Album Artist Extension" plugin, but expands the functionality to also include track artists. Note that it
+cannot be used as a direct drop-in replacement for the "Album Artist Extension" plugin because the variables
+are provided with different names.  This will require changes to existing scripts if switching to this plugin.
+
+This plugin reads the album and track metadata provided to Picard and exposes the information in a number
+of additional variables for use in Picard scripts.  The plugin has been designed such that the information
+is presented consistently regardless of whether or not the `Use standardized artist names` option is selected.
+This means that some of the information available through the standard Picard tags will be duplicated in the
+variables provided by this plugin.
+
+***NOTE:*** This plugin makes no additional calls to the MusicBrainz website api for the information.
+
+-------
+<!--
 ## Artist Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/artist_variables/artist_variables.zip)\]
 
 This plugin provides specialized album and track variables for use in naming scripts, without any additional calls to the MusicBrainz website api for additional information. The information is provided in the following variables:
@@ -43,6 +60,7 @@ This plugin provides specialized album and track variables for use in naming scr
 **PLEASE NOTE**: Tagger scripts are required to make use of these hidden variables.
 
 -------
+-->
 
 ## Data Dumper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/data_dumper/data_dumper.py)\]
 
