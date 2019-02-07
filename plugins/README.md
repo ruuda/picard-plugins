@@ -2,7 +2,7 @@
 
 This branch of the picard-plugins repository hosts plugins for [MusicBrainz Picard](https://picard.musicbrainz.org/) that have been developed by Bob Swift (rdswift).  Not all of these plugins have been submitted to the [musicbrainz/picard-plugins](https://github.com/musicbrainz/picard-plugins) repository.  Some have been developed for personal use, and some specialty plugins have been developed on request or in response to discussion in the [MetaBrainz Community Forum](https://community.metabrainz.org/).
 
-Note that all plugins in this branch of the repository are released under the GNU General Public License version 2 ("GPL") or a license compatible with it. See https://www.gnu.org/licenses/license-list.html for a list of compatible licenses.
+Note that all plugins in this branch of the repository are released under the GNU General Public License version 2 ("GPL") or a license compatible with it. See [https://www.gnu.org/licenses/license-list.html](https://www.gnu.org/licenses/license-list.html) for a list of compatible licenses.
 
 -------
 
@@ -80,9 +80,10 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 -------
 
 ## Get Eval Function \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/get_eval/get_eval.zip)\]
+
 This plugin provides a new scripting function `$get_eval()` that allows the user to evaluate specified python code within Picard and return the results as a string for use within scripts.
 
-This allows access to all metadata fields and the ability to use native python processing commands directly from a script without having to create and load additional plugins. 
+This allows access to all metadata fields and the ability to use native python processing commands directly from a script without having to create and load additional plugins.
 
 Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/get_eval/README.md) for more information.
 
@@ -97,9 +98,19 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 -------
 
+## Language Name \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/language_name/language_name.zip)\]
+
+This plugin provides a new scripting function `$language_name()` that allows the user to retrieve the full name for a three-character language code for use within scripts.
+
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/language_name/docs/README.md) for more information.
+
+<!--
+
+-------
+
 ## Release Language Title \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/release_language_title/release_language_title.py)\]
 
 This plugin provides full language title for the release as a variable (_releaselanguagetitle) for use in naming scripts.  See the [discussion](https://community.metabrainz.org/t/help-with-file-naming-with-special-rule-for-soundtracks/398631) on the MetaBrainz Community Forum.
 
 **PLEASE NOTE**: Tagger scripts are required to make use of this hidden variable.
-
+-->
