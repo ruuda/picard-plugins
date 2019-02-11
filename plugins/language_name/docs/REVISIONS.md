@@ -2,6 +2,10 @@
 
 ## Revision History
 
+### v0.4 - 2019-02-11 (rdswift)
+
+- Move override settings to '**Plugins**'->'**Language Name**' in the Picard options settings.
+
 ### v0.3 - 2019-02-11 (rdswift)
 
 - General update of all language files, including the addition of the missing codes "mul" (multi-language) and "zxx" (no linguistic content).

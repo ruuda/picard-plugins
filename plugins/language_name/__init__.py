@@ -6,7 +6,7 @@ three-character language code with the full name of the language.
 <br /><br />
 By default, the language used for the return values will be based on the
 user's interface language set in the Picard options.  This can be overridden
-in the 'Scripting'->'Language Name' section of Picard's options settings.
+in the 'Plugins'->'Language Name' section of Picard's options settings.
 <br /><br />
 Languages currently supported are English, French, German, Spanish, Dutch,
 Russian and Chinese.  Note that some translations may be incorrect or incomplete.
@@ -25,7 +25,7 @@ interface languages not currently supported.
 #
 ###############################################################################
 
-PLUGIN_VERSION = "0.3"
+PLUGIN_VERSION = "0.4"
 PLUGIN_API_VERSIONS = ["2.0"]
 PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -106,7 +106,7 @@ class LanguageNameOptionsPage(OptionsPage):
 
     NAME = "language_name"
     TITLE = "Language Name"
-    PARENT = "scripting"
+    PARENT = "plugins"
 
     options = [
         config.BoolOption("setting", "language_name_override", False),

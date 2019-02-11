@@ -6,7 +6,7 @@ This plugin provides a new scripting function `$language_name()` that allows the
 
 The function is used as `$language_name(code)`, where `code` is the three-character language code.  It will typically be used to expand the `%language%` and `%_releaselanguage%` tags.
 
-By default, the language used for the return values will be based on the user's interface language set in the Picard options.  This can be overridden in the 'Scripting'->'Language Name' section of Picard's options settings.
+By default, the language used for the return values will be based on the user's interface language set in the Picard options.  This can be overridden in the 'Plugins'->'Language Name' section of Picard's options settings.
 
 For example, assuming the user interface is set to english and has not been overridden in the settings, `$language_name(%language%)` will return '**English**' if the language code is '**eng**', or '**Gwich´in**' if the language code is '**gwi**', or even '**Klingon / tlhIngan-Hol**' if the code is '**tlh**'. (Yes, Klingon is actually officially recognized in the ISO 639-3 list of languages.)
 
