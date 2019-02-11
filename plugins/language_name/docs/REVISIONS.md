@@ -1,10 +1,16 @@
-# Language Name Function
+# Language Name
 
 ## Revision History
 
+### v0.3 - 2019-02-11 (rdswift)
+
+- General update of all language files, including the addition of the missing codes "mul" (multi-language) and "zxx" (no linguistic content).
+
+- Add option to override automatic language selection and manually select the output language.  Selections are found under '**Scripting**'->'**Language Name**' in the Picard options settings.
+
 ### v0.2 - 2019-02-08 (rdswift)
 
-- Multi language support based on the user interface language setting.  Languages currently supported are English, French, German, Spanish, Dutch, Russian and Chinese.  Note that some translations may be incorrect or incomplete.  English is the language used for all user interface languages not currently supported, and any help correcting / completing the current translations or translation to other languages would be appreciated.
+- Added multi language support based on the user interface language setting.  Languages currently supported are English, French, German, Spanish, Dutch, Russian and Chinese.
 
 ### v0.1 - 2019-02-07 (rdswift)
 
