@@ -12,6 +12,46 @@ For example, assuming the user interface is set to english and has not been over
 
 If an unknown code is entered, the function will return '**unknown**'.  If there is no code entered, '**missing**' will be returned.
 
+### Tutorial
+
+The following usage tutorial has been graciously provided by ***hiccup***:
+
+You will need to use a script to tag your files with the full language names that this plugins makes available.  A basic script to e.g. populate the 'language' tag with the full language name of the work could be:
+
+```
+$set(language,$language_name(%language%))
+```
+
+Or if you want to write the release language, you could use:
+
+```
+$set(release language,$language_name(%_releaselanguage%))
+```
+
+By default, when a release has no language code attached to it, the plugin will populate a tag with the text "**missing**".  If for these cases you don't want a tag created at all, you could use a script like this:
+
+```
+$set(language_temp,$language_name(%language%))
+$if($in(%language_temp%,missing),,$set(language,%language_temp%))
+$delete(language_temp)
+```
+
+When a release has the code "**zxx**", the plugin will write "**no linguistic content**".  While technically correct, you might prefer to have "**Instrumental**" in your tags instead.  Integrated with the previous example script, you then could use:
+
+```
+$set(language_temp,$language_name(%language%))
+$if($in(%language_temp%,missing),,$if($in(%language_temp%,no linguistic content),$set(language,Instrumental),$set(language,%language_temp%)))
+$delete(language_temp)
+```
+
+If you are using a language other than English, you should change "no linguistic content" accordingly. E.g. for Dutch you should use:
+
+```
+$set(language_temp,$language_name(%language%))
+$if($in(%language_temp%,missing),,$if($in(%language_temp%,geen taalkundige inhoud),$set(language,Instrumentaal),$set(language,%language_temp%)))
+$delete(language_temp)
+```
+
 ## Supported Languages for Return Values
 
 Languages currently supported are English, French, German, Spanish, Dutch, Russian and Chinese.  Note that some translations may be incorrect or incomplete.
