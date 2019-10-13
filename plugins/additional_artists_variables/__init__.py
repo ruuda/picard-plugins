@@ -28,55 +28,6 @@ Extension" plugin because the variables are provided with different
 names.  This will require changes to existing scripts if switching to
 this plugin.
 <br /><br />
-The variables provided are:
-<br /><br />
-<strong>Album Variables</strong>
-<ul>
-<li><strong><i>_artists_album_primary_id</i></strong> - The ID of the primary / first album artist listed
-<li><strong><i>_artists_album_primary_std</i></strong> - The primary / first album artist listed (standardized)
-<li><strong><i>_artists_album_primary_cred</i></strong> - The primary / first album artist listed (as credited)
-<li><strong><i>_artists_album_primary_sort</i></strong> - The primary / first album artist listed (sort name)
-<li><strong><i>_artists_album_additional_id</i></strong> - The IDs of all album artists listed except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_album_additional_std</i></strong> - All album artists listed (standardized) except for the primary / first artist, separated by strings provided from the release entry
-<li><strong><i>_artists_album_additional_cred</i></strong> - All album artists listed (as credited) except for the primary / first artist, separated by strings provided from the release entry
-<li><strong><i>_artists_album_additional_sort</i></strong> - All album artists listed (sort names) except for the primary / first artist, separated by strings provided from the release entry
-<li><strong><i>_artists_album_additional_std_multi</i></strong> - All album artists listed (standardized) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_album_additional_cred_multi</i></strong> - All album artists listed (as credited) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_album_additional_sort_multi</i></strong> - All album artists listed (sort names) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_album_all_std</i></strong> - All album artists listed (standardized), separated by strings provided from the release entry
-<li><strong><i>_artists_album_all_cred</i></strong> - All album artists listed (as credited), separated by strings provided from the release entry
-<li><strong><i>_artists_album_all_sort</i></strong> - All album artists listed (sort names), separated by strings provided from the release entry
-<li><strong><i>_artists_album_all_std_multi</i></strong> - All album artists listed (standardized), as a multi-value
-<li><strong><i>_artists_album_all_cred_multi</i></strong> - All album artists listed (as credited), as a multi-value
-<li><strong><i>_artists_album_all_sort_multi</i></strong> - All album artists listed (sort names), as a multi-value
-<li><strong><i>_artists_album_all_sort_primary</i></strong> - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated by strings provided from the release entry
-<li><strong><i>_artists_album_all_count</i></strong> - The number of artists listed as album artists
-</ul><br />
-<strong>Track Variables</strong>
-<ul>
-<li><strong><i>_artists_track_primary_id</i></strong> - The ID of the primary / first track artist listed
-<li><strong><i>_artists_track_primary_std</i></strong> - The primary / first track artist listed (standardized)
-<li><strong><i>_artists_track_primary_cred</i></strong> - The primary / first track artist listed (as credited)
-<li><strong><i>_artists_track_primary_sort</i></strong> - The primary / first track artist listed (sort name)
-<li><strong><i>_artists_track_additional_id</i></strong> - The IDs of all track artists listed except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_track_additional_std</i></strong> - All track artists listed (standardized) except for the primary / first artist, separated by strings provided from the track entry
-<li><strong><i>_artists_track_additional_cred</i></strong> - All track artists listed (as credited) except for the primary / first artist, separated by strings provided from the track entry
-<li><strong><i>_artists_track_additional_sort</i></strong> - All track artists listed (sort names) except for the primary / first artist, separated by strings provided from the track entry
-<li><strong><i>_artists_track_additional_std_multi</i></strong> - All track artists listed (standardized) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_track_additional_cred_multi</i></strong> - All track artists listed (as credited) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_track_additional_sort_multi</i></strong> - All track artists listed (sort names) except for the primary / first artist, as a multi-value
-<li><strong><i>_artists_track_all_std</i></strong> - All track artists listed (standardized), separated by strings provided from the track entry
-<li><strong><i>_artists_track_all_cred</i></strong> - All track artists listed (as credited), separated by strings provided from the track entry
-<li><strong><i>_artists_track_all_sort</i></strong> - All track artists listed (sort names), separated by strings provided from the track entry
-<li><strong><i>_artists_track_all_std_multi</i></strong> - All track artists listed (standardized), as a multi-value
-<li><strong><i>_artists_track_all_cred_multi</i></strong> - All track artists listed (as credited), as a multi-value
-<li><strong><i>_artists_track_all_sort_multi</i></strong> - All track artists listed (sort names), as a multi-value
-<li><strong><i>_artists_track_all_sort_primary</i></strong> - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated by strings provided from the track entry
-<li><strong><i>_artists_track_all_count</i></strong> - The number of artists listed as track artists
-</ul><br />
-<strong>PLEASE NOTE</strong>: Tagger scripts are required to make use of these hidden
-variables.
-<br /><br />
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/additional_artists_variables/docs/README.md">user guide</a> on GitHub for more information.
 '''
 
