@@ -36,13 +36,20 @@ The variables provided are:
 <li><strong><i>_artists_album_primary_std</i></strong> - The primary / first album artist listed (standardized)
 <li><strong><i>_artists_album_primary_cred</i></strong> - The primary / first album artist listed (as credited)
 <li><strong><i>_artists_album_primary_sort</i></strong> - The primary / first album artist listed (sort name)
-<li><strong><i>_artists_album_additional_id</i></strong> - The IDs of all album artists listed except for the primary / first artist, separated by a semicolon and space
-<li><strong><i>_artists_album_additional_std</i></strong> - All album artists listed (standardized) except for the primary / first artist, separated with strings provided from the release entry
-<li><strong><i>_artists_album_additional_cred</i></strong> - All album artists listed (as credited) except for the primary / first artist, separated with strings provided from the release entry
-<li><strong><i>_artists_album_all_std</i></strong> - All album artists listed (standardized), separated with strings provided from the release entry
-<li><strong><i>_artists_album_all_cred</i></strong> - All album artists listed (as credited), separated with strings provided from the release entry
-<li><strong><i>_artists_album_all_sort</i></strong> - All album artists listed (sort names), separated with strings provided from the release entry
-<li><strong><i>_artists_album_all_sort_primary</i></strong> - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated with strings provided from the release entry
+<li><strong><i>_artists_album_additional_id</i></strong> - The IDs of all album artists listed except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_album_additional_std</i></strong> - All album artists listed (standardized) except for the primary / first artist, separated by strings provided from the release entry
+<li><strong><i>_artists_album_additional_cred</i></strong> - All album artists listed (as credited) except for the primary / first artist, separated by strings provided from the release entry
+<li><strong><i>_artists_album_additional_sort</i></strong> - All album artists listed (sort names) except for the primary / first artist, separated by strings provided from the release entry
+<li><strong><i>_artists_album_additional_std_multi</i></strong> - All album artists listed (standardized) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_album_additional_cred_multi</i></strong> - All album artists listed (as credited) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_album_additional_sort_multi</i></strong> - All album artists listed (sort names) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_album_all_std</i></strong> - All album artists listed (standardized), separated by strings provided from the release entry
+<li><strong><i>_artists_album_all_cred</i></strong> - All album artists listed (as credited), separated by strings provided from the release entry
+<li><strong><i>_artists_album_all_sort</i></strong> - All album artists listed (sort names), separated by strings provided from the release entry
+<li><strong><i>_artists_album_all_std_multi</i></strong> - All album artists listed (standardized), as a multi-value
+<li><strong><i>_artists_album_all_cred_multi</i></strong> - All album artists listed (as credited), as a multi-value
+<li><strong><i>_artists_album_all_sort_multi</i></strong> - All album artists listed (sort names), as a multi-value
+<li><strong><i>_artists_album_all_sort_primary</i></strong> - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated by strings provided from the release entry
 <li><strong><i>_artists_album_all_count</i></strong> - The number of artists listed as album artists
 </ul><br />
 <strong>Track Variables</strong>
@@ -51,13 +58,20 @@ The variables provided are:
 <li><strong><i>_artists_track_primary_std</i></strong> - The primary / first track artist listed (standardized)
 <li><strong><i>_artists_track_primary_cred</i></strong> - The primary / first track artist listed (as credited)
 <li><strong><i>_artists_track_primary_sort</i></strong> - The primary / first track artist listed (sort name)
-<li><strong><i>_artists_track_additional_id</i></strong> - The IDs of all track artists listed except for the primary / first artist, separated by a semicolon and space
-<li><strong><i>_artists_track_additional_std</i></strong> - All track artists listed (standardized) except for the primary / first artist, separated with strings provided from the track entry
-<li><strong><i>_artists_track_additional_cred</i></strong> - All track artists listed (as credited) except for the primary / first artist, separated with strings provided from the track entry
-<li><strong><i>_artists_track_all_std</i></strong> - All track artists listed (standardized), separated with strings provided from the track entry
-<li><strong><i>_artists_track_all_cred</i></strong> - All track artists listed (as credited), separated with strings provided from the track entry
-<li><strong><i>_artists_track_all_sort</i></strong> - All track artists listed (sort names), separated with strings provided from the track entry
-<li><strong><i>_artists_track_all_sort_primary</i></strong> - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated with strings provided from the track entry
+<li><strong><i>_artists_track_additional_id</i></strong> - The IDs of all track artists listed except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_track_additional_std</i></strong> - All track artists listed (standardized) except for the primary / first artist, separated by strings provided from the track entry
+<li><strong><i>_artists_track_additional_cred</i></strong> - All track artists listed (as credited) except for the primary / first artist, separated by strings provided from the track entry
+<li><strong><i>_artists_track_additional_sort</i></strong> - All track artists listed (sort names) except for the primary / first artist, separated by strings provided from the track entry
+<li><strong><i>_artists_track_additional_std_multi</i></strong> - All track artists listed (standardized) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_track_additional_cred_multi</i></strong> - All track artists listed (as credited) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_track_additional_sort_multi</i></strong> - All track artists listed (sort names) except for the primary / first artist, as a multi-value
+<li><strong><i>_artists_track_all_std</i></strong> - All track artists listed (standardized), separated by strings provided from the track entry
+<li><strong><i>_artists_track_all_cred</i></strong> - All track artists listed (as credited), separated by strings provided from the track entry
+<li><strong><i>_artists_track_all_sort</i></strong> - All track artists listed (sort names), separated by strings provided from the track entry
+<li><strong><i>_artists_track_all_std_multi</i></strong> - All track artists listed (standardized), as a multi-value
+<li><strong><i>_artists_track_all_cred_multi</i></strong> - All track artists listed (as credited), as a multi-value
+<li><strong><i>_artists_track_all_sort_multi</i></strong> - All track artists listed (sort names), as a multi-value
+<li><strong><i>_artists_track_all_sort_primary</i></strong> - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated by strings provided from the track entry
 <li><strong><i>_artists_track_all_count</i></strong> - The number of artists listed as track artists
 </ul><br />
 <strong>PLEASE NOTE</strong>: Tagger scripts are required to make use of these hidden
@@ -66,8 +80,8 @@ variables.
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/additional_artists_variables/docs/README.md">user guide</a> on GitHub for more information.
 '''
 
-PLUGIN_VERSION = "0.4"
-PLUGIN_API_VERSIONS = ["2.0", "2.1"]
+PLUGIN_VERSION = "0.5"
+PLUGIN_API_VERSIONS = ["2.0", "2.1", "2.2"]
 PLUGIN_LICENSE = "GPL-2.0-or-later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
 
@@ -91,8 +105,11 @@ def process_artists(album_id, source_metadata, destination_metadata, source_type
         sort_artist = ""
         additional_std_artist = ""
         additional_cred_artist = ""
+        std_artist_list = []
+        cred_artist_list = []
+        sort_artist_list = []
         artist_count = 0
-        additional_artist_ids = []
+        artist_ids = []
         for artist_credit in source_metadata['artist-credit']:
             # Initialize temporary variables for each loop.
             temp_std_name = ""
@@ -131,6 +148,11 @@ def process_artists(album_id, source_metadata, destination_metadata, source_type
             std_artist += temp_std_name + temp_phrase
             cred_artist += temp_cred_name + temp_phrase
             sort_artist += temp_sort_name + temp_phrase
+            std_artist_list.append(temp_std_name,)
+            cred_artist_list.append(temp_cred_name,)
+            sort_artist_list.append(temp_sort_name,)
+            if temp_id:
+                artist_ids.append(temp_id,)
             if artist_count < 1:
                 if temp_id:
                     destination_metadata["~artists_{0}_primary_id".format(source_type,)] = temp_id
@@ -139,26 +161,40 @@ def process_artists(album_id, source_metadata, destination_metadata, source_type
                 destination_metadata["~artists_{0}_primary_sort".format(source_type,)] = temp_sort_name
                 sort_pri_artist += temp_sort_name + temp_phrase
             else:
-                if temp_id:
-                    additional_artist_ids.append(temp_id,)
                 sort_pri_artist += temp_std_name + temp_phrase
                 additional_std_artist += temp_std_name + temp_phrase
                 additional_cred_artist += temp_cred_name + temp_phrase
             artist_count += 1
     else:
         metadata_error(album_id, 'artist-credit', source_type)
+    additional_std_artist_list = std_artist_list[1:]
+    additional_cred_artist_list = cred_artist_list[1:]
+    additional_sort_artist_list = sort_artist_list[1:]
+    additional_artist_ids = artist_ids[1:]
     if additional_artist_ids:
-        destination_metadata["~artists_{0}_additional_id".format(source_type,)] = "; ".join(additional_artist_ids)
+        destination_metadata["~artists_{0}_additional_id".format(source_type,)] = additional_artist_ids
     if additional_std_artist:
         destination_metadata["~artists_{0}_additional_std".format(source_type,)] = additional_std_artist
     if additional_cred_artist:
         destination_metadata["~artists_{0}_additional_cred".format(source_type,)] = additional_cred_artist
+    if additional_std_artist_list:
+        destination_metadata["~artists_{0}_additional_std_multi".format(source_type,)] = additional_std_artist_list
+    if additional_cred_artist_list:
+        destination_metadata["~artists_{0}_additional_cred_multi".format(source_type,)] = additional_cred_artist_list
+    if additional_sort_artist_list:
+        destination_metadata["~artists_{0}_additional_sort_multi".format(source_type,)] = additional_sort_artist_list
     if std_artist:
         destination_metadata["~artists_{0}_all_std".format(source_type,)] = std_artist
     if cred_artist:
         destination_metadata["~artists_{0}_all_cred".format(source_type,)] = cred_artist
     if sort_artist:
         destination_metadata["~artists_{0}_all_sort".format(source_type,)] = sort_artist
+    if std_artist_list:
+        destination_metadata["~artists_{0}_all_std_multi".format(source_type,)] = std_artist_list
+    if cred_artist_list:
+        destination_metadata["~artists_{0}_all_cred_multi".format(source_type,)] = cred_artist_list
+    if sort_artist_list:
+        destination_metadata["~artists_{0}_all_sort_multi".format(source_type,)] = sort_artist_list
     if sort_pri_artist:
         destination_metadata["~artists_{0}_all_sort_primary".format(source_type,)] = sort_pri_artist
     if artist_count:

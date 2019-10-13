@@ -12,6 +12,11 @@ The following people have contributed to the development of this plugin.
 
 The following identifies the development history of the plugin, in reverse chronological order.  Each version lists the changes made for that version, along with the author of each change.
 
+### Version 0.5
+
+* Update to show support for Picard v2.2. \[rdswift\]
+* Add additional artists variables as proper multi-value variables. \[rdswift\]
+
 ### Version 0.4
 
 * Rename the plugin to "Additional Artists Variables". \[rdswift\]

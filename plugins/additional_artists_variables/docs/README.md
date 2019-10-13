@@ -25,13 +25,20 @@ variables provided by this plugin.
 * **_artists_album_primary_std** - The primary / first album artist listed (standardized)
 * **_artists_album_primary_cred** - The primary / first album artist listed (as credited)
 * **_artists_album_primary_sort** - The primary / first album artist listed (sort name)
-* **_artists_album_additional_id** - The IDs of all album artists listed except for the primary / first artist, separated by a semicolon and space
-* **_artists_album_additional_std** - All album artists listed (standardized) except for the primary / first artist, separated with strings provided from the release entry
-* **_artists_album_additional_cred** - All album artists listed (as credited) except for the primary / first artist, separated with strings provided from the release entry
-* **_artists_album_all_std** - All album artists listed (standardized), separated with strings provided from the release entry
-* **_artists_album_all_cred** - All album artists listed (as credited), separated with strings provided from the release entry
-* **_artists_album_all_sort** - All album artists listed (sort names), separated with strings provided from the release entry
-* **_artists_album_all_sort_primary** - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated with strings provided from the release entry
+* **_artists_album_additional_id** - The IDs of all album artists listed except for the primary / first artist, as a multi-value
+* **_artists_album_additional_std** - All album artists listed (standardized) except for the primary / first artist, separated by strings provided from the release entry
+* **_artists_album_additional_cred** - All album artists listed (as credited) except for the primary / first artist, separated by strings provided from the release entry
+* **_artists_album_additional_sort** - All album artists listed (sort names) except for the primary / first artist, separated by strings provided from the release entry
+* **_artists_album_additional_std_multi** - All album artists listed (standardized) except for the primary / first artist, as a multi-value
+* **_artists_album_additional_cred_multi** - All album artists listed (as credited) except for the primary / first artist, as a multi-value
+* **_artists_album_additional_sort_multi** - All album artists listed (sort names) except for the primary / first artist, as a multi-value
+* **_artists_album_all_std** - All album artists listed (standardized), separated by strings provided from the release entry
+* **_artists_album_all_cred** - All album artists listed (as credited), separated by strings provided from the release entry
+* **_artists_album_all_sort** - All album artists listed (sort names), separated by strings provided from the release entry
+* **_artists_album_all_std_multi** - All album artists listed (standardized), as a multi-value
+* **_artists_album_all_cred_multi** - All album artists listed (as credited), as a multi-value
+* **_artists_album_all_sort_multi** - All album artists listed (sort names), as a multi-value
+* **_artists_album_all_sort_primary** - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated by strings provided from the release entry
 * **_artists_album_all_count** - The number of artists listed as album artists
 
 ### Track Variables
@@ -40,13 +47,20 @@ variables provided by this plugin.
 * **_artists_track_primary_std** - The primary / first track artist listed (standardized)
 * **_artists_track_primary_cred** - The primary / first track artist listed (as credited)
 * **_artists_track_primary_sort** - The primary / first track artist listed (sort name)
-* **_artists_track_additional_id** - The IDs of all track artists listed except for the primary / first artist, separated by a semicolon and space
-* **_artists_track_additional_std** - All track artists listed (standardized) except for the primary / first artist, separated with strings provided from the track entry
-* **_artists_track_additional_cred** - All track artists listed (as credited) except for the primary / first artist, separated with strings provided from the track entry
-* **_artists_track_all_std** - All track artists listed (standardized), separated with strings provided from the track entry
-* **_artists_track_all_cred** - All track artists listed (as credited), separated with strings provided from the track entry
-* **_artists_track_all_sort** - All track artists listed (sort names), separated with strings provided from the track entry
-* **_artists_track_all_sort_primary** - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated with strings provided from the track entry
+* **_artists_track_additional_id** - The IDs of all track artists listed except for the primary / first artist, as a multi-value
+* **_artists_track_additional_std** - All track artists listed (standardized) except for the primary / first artist, separated by strings provided from the track entry
+* **_artists_track_additional_cred** - All track artists listed (as credited) except for the primary / first artist, separated by strings provided from the track entry
+* **_artists_track_additional_sort** - All track artists listed (sort names) except for the primary / first artist, separated by strings provided from the track entry
+* **_artists_track_additional_std_multi** - All track artists listed (standardized) except for the primary / first artist, as a multi-value
+* **_artists_track_additional_cred_multi** - All track artists listed (as credited) except for the primary / first artist, as a multi-value
+* **_artists_track_additional_sort_multi** - All track artists listed (sort names) except for the primary / first artist, as a multi-value
+* **_artists_track_all_std** - All track artists listed (standardized), separated by strings provided from the track entry
+* **_artists_track_all_cred** - All track artists listed (as credited), separated by strings provided from the track entry
+* **_artists_track_all_sort** - All track artists listed (sort names), separated by strings provided from the track entry
+* **_artists_track_all_std_multi** - All track artists listed (standardized), as a multi-value
+* **_artists_track_all_cred_multi** - All track artists listed (as credited), as a multi-value
+* **_artists_track_all_sort_multi** - All track artists listed (sort names), as a multi-value
+* **_artists_track_all_sort_primary** - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated by strings provided from the track entry
 * **_artists_track_all_count** - The number of artists listed as track artists
 
 ---
@@ -77,12 +91,18 @@ by [Walk Off The Earth](https://musicbrainz.org/artist/e2a5eaeb-7de7-4ffe-a519-e
 * **_artists_track_all_std** = Walk Off The Earth
 * **_artists_track_all_cred** = Gianni and Sarah
 * **_artists_track_all_sort** = Walk Off The Earth
+* **_artists_track_all_std_multi** = Walk Off The Earth
+* **_artists_track_all_cred_multi** = Gianni and Sarah
+* **_artists_track_all_sort_multi** = Walk Off The Earth
 * **_artists_track_all_sort_primary** = Walk Off The Earth
 * **_artists_track_all_count** = 1
 
 Because there is only one artist associated with this single, the **_artists_album_additional_id**,
-**_artists_album_additional_std**, **_artists_album_additional_cred**, **_artists_track_additional_id**,
-**_artists_track_additional_std** and **_artists_track_additional_cred** variables are not created.
+**_artists_album_additional_std**, **_artists_album_additional_cred**,
+**_artists_album_additional_sort**, **_artists_track_additional_id**,
+**_artists_track_additional_std**, **_artists_track_additional_cred**,
+**_artists_track_additional_sort**, **_artists_track_additional_std_multi**,
+**_artists_track_additional_cred_multi** and **_artists_track_additional_sort_multi** variables are not created.
 
 ### Example 2:
 
@@ -99,6 +119,10 @@ created are:
 * **_artists_album_additional_id** = 07fa21a9-c253-4ed0-b711-d63f7965b723; 541d331c-f041-4895-b8f2-7db9e27dc5ab
 * **_artists_album_additional_std** = Jenni Pleau & Emily Bones
 * **_artists_album_additional_cred** = Jenni Pleau & Emily Bones
+* **_artists_album_additional_sort** = Pleau, Jenni & Bones, Emily
+* **_artists_album_additional_std_multi** = Jenni Pleau; Emily Bones
+* **_artists_album_additional_cred_multi** = Jenni Pleau; Emily Bones
+* **_artists_album_additional_sort_multi** = Pleau, Jenni; Bones, Emily
 * **_artists_album_all_std** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_album_all_cred** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_album_all_sort** = Blackwood, Sarah, Pleau, Jenni & Bones, Emily
@@ -111,9 +135,16 @@ created are:
 * **_artists_track_additional_id** = 07fa21a9-c253-4ed0-b711-d63f7965b723; 541d331c-f041-4895-b8f2-7db9e27dc5ab
 * **_artists_track_additional_std** = Jenni Pleau & Emily Bones
 * **_artists_track_additional_cred** = Jenni Pleau & Emily Bones
+* **_artists_track_additional_sort** = Pleau, Jenni & Bones, Emily
+* **_artists_track_additional_std_multi** = Jenni Pleau; Emily Bones
+* **_artists_track_additional_cred_multi** = Jenni Pleau; Emily Bones
+* **_artists_track_additional_sort_multi** = Pleau, Jenni; Bones, Emily
 * **_artists_track_all_std** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_track_all_cred** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_track_all_sort** = Blackwood, Sarah, Pleau, Jenni & Bones, Emily
+* **_artists_track_all_std_multi** = Sarah Blackwood; Jenni Pleau; Emily Bones
+* **_artists_track_all_cred_multi** = Sarah Blackwood; Jenni Pleau; Emily Bones
+* **_artists_track_all_sort_multi** = Blackwood, Sarah; Pleau, Jenni; Bones, Emily
 * **_artists_track_all_sort_primary** = Blackwood, Sarah, Jenni Pleau & Emily Bones
 * **_artists_track_all_count** = 3
 
@@ -134,6 +165,9 @@ by [Linda Ronstadt](https://musicbrainz.org/artist/498f2581-be21-4eef-8756-fbb89
 * **_artists_album_all_std** = The Muppets
 * **_artists_album_all_cred** = The Muppets
 * **_artists_album_all_sort** = Muppets, The
+* **_artists_album_all_std_multi** = The Muppets
+* **_artists_album_all_cred_multi** = The Muppets
+* **_artists_album_all_sort_multi** = Muppets, The
 * **_artists_album_all_sort_primary** = Muppets, The
 * **_artists_album_all_count** = 1
 * **_artists_track_primary_id** = 498f2581-be21-4eef-8756-fbb89d79b1c0
@@ -143,11 +177,19 @@ by [Linda Ronstadt](https://musicbrainz.org/artist/498f2581-be21-4eef-8756-fbb89
 * **_artists_track_additional_id** = 992a7ea8-96c1-4058-ba96-f811c8d01c77
 * **_artists_track_additional_std** = Kermit the Frog
 * **_artists_track_additional_cred** = Kermit the Frog
+* **_artists_track_additional_sort** = Kermit the Frog
+* **_artists_track_additional_std_multi** = Kermit the Frog
+* **_artists_track_additional_cred_multi** = Kermit the Frog
+* **_artists_track_additional_sort_multi** = Kermit the Frog
 * **_artists_track_all_std** = Linda Ronstadt and Kermit the Frog
 * **_artists_track_all_cred** = Linda Ronstadt and Kermit the Frog
 * **_artists_track_all_sort** = Ronstadt, Linda and Kermit the Frog
+* **_artists_track_all_std_multi** = Linda Ronstadt; Kermit the Frog
+* **_artists_track_all_cred_multi** = Linda Ronstadt; Kermit the Frog
+* **_artists_track_all_sort_multi** = Ronstadt, Linda; Kermit the Frog
 * **_artists_track_all_sort_primary** = Ronstadt, Linda and Kermit the Frog
 * **_artists_track_all_count** = 2
 
-Because there is only one artist associated with the album the **_artists_album_additional_id**, **_artists_album_additional_std** and
-**_artists_album_additional_cred** variables are not created.
+Because there is only one artist associated with the album the **_artists_album_additional_id**,
+**_artists_album_additional_std**, **_artists_album_additional_cred**, **_artists_album_additional_sort**,
+**_artists_album_additional_std_multi**, **_artists_album_additional_cred_multi** and **_artists_album_additional_sort_multi** variables are not created.
