@@ -104,6 +104,14 @@ This plugin provides a new scripting function `$language_name()` that allows the
 
 Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/language_name/docs/README.md) for more information.
 
+-------
+
+## Search Engine Lookup \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/search_engine_lookup/search_engine_lookup.zip)\]
+
+This plugin adds a right click option on a cluster, providing the ability to lookup the cluster using a search engine in a browser window.
+
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/search_engine_lookup/docs/README.md) for more information.
+
 <!--
 
 -------
