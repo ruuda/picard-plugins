@@ -9,3 +9,12 @@ When you right-click on a cluster, the option is found under the "Plugins" secti
 
 A settings screen is available in Picard's options settings, under the Plugins section.  This allows the user to select their preferred
 search engine provider, and any additional words to provide with the search.  You can also add, edit or remove search engine providers.
+
+![options image](options.jpg)
+
+When adding or editing a provider, checkmarks to the right of each field indicate whether or not the information in the field is valid.
+The title is valid when it contains at least two non-space characters, does not bein or end with a space, and is not the same as the
+title of another existing provider.  The URL is valid when it contains the search replacement parameter ``%search%`` and does not begin
+or end with, or contain any spaces.  The "Save" button will be disabled until both fields are valid.
+
+![options edit image](options_edit.jpg)
