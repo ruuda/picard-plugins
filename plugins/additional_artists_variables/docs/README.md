@@ -25,6 +25,7 @@ variables provided by this plugin.
 * **_artists_album_primary_std** - The primary / first album artist listed (standardized)
 * **_artists_album_primary_cred** - The primary / first album artist listed (as credited)
 * **_artists_album_primary_sort** - The primary / first album artist listed (sort name)
+* **_artists_album_primary_tags** - The primary / first album artist tags (top 5), as a multi-value
 * **_artists_album_additional_id** - The IDs of all album artists listed except for the primary / first artist, as a multi-value
 * **_artists_album_additional_std** - All album artists listed (standardized) except for the primary / first artist, separated by strings provided from the release entry
 * **_artists_album_additional_cred** - All album artists listed (as credited) except for the primary / first artist, separated by strings provided from the release entry
