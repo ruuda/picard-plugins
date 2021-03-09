@@ -28,7 +28,7 @@ This can be used to help develop release and track plugins by
 providing a log of the information passed to the plugin.
 '''
 
-PLUGIN_VERSION = "0.1"
+PLUGIN_VERSION = "0.2"
 PLUGIN_API_VERSIONS = ["2.0"]
 PLUGIN_LICENSE = "GPL-2.0 or later"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.html"
@@ -47,28 +47,26 @@ file_to_write = config.setting["move_files_to"] + os.path.sep + OFILE
 
 
 def write_line(line_type, object_to_write, dump_json=False):
-    line = "{0:s}: {1:s}\n".format(line_type, object_to_write,)
     try:
         with open(file_to_write, "a", encoding="UTF-8") as f:
-            f.write(line)
             if dump_json:
-                f.write('JSON dump follows:\n')
+                f.write('{0} JSON dump follows:\n'.format(line_type,))
                 f.write('{0}\n\n'.format(json.dumps(object_to_write, indent=4)))
+            else:
+                f.write("{0:s}: {1:s}\n".format(line_type, str(object_to_write),))
     except Exception as ex:
         log.error("{0}: Error: {1}".format(PLUGIN_NAME, ex,))
 
 
 def dump_release_info(album, metadata, release):
     write_line('Release Argument 1 (album)', album)
-    write_line('Release Argument 2 (metadata)', metadata, dump_json=True)
     write_line('Release Argument 3 (release)', release, dump_json=True)
 
 
 def dump_track_info(album, metadata, track, release):
     write_line('Track Argument 1 (album)', album)
-    write_line('Track Argument 2 (metadata)', metadata, dump_json=True)
     write_line('Track Argument 3 (track)', track, dump_json=True)
-    write_line('Track Argument 4 (release)', release, dump_json=True)
+    # write_line('Track Argument 4 (release)', release, dump_json=True)
 
 
 # Register the plugin to run at a HIGH priority so that other plugins will
