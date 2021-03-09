@@ -94,10 +94,11 @@ def process_artists(album_id, source_metadata, destination_metadata, source_type
                 else:
                     metadata_error(album_id, 'artist-credit.artist.sort-name', source_type)
                 tag_list = []
-                if 'tags' in artist_credit['artist']:
-                    for item in sorted(sorted(artist_credit['artist']['tags'], key=itemgetter('name')), key=itemgetter('count'), reverse=True):
-                        if item['count'] > 0:
-                            tag_list.append(item['name'])
+                for tag_type in ['user-genres', 'genres', 'user-tags', 'tags']:
+                    if tag_type in artist_credit['artist']:
+                        for item in sorted(sorted(artist_credit['artist'][tag_type], key=itemgetter('name')), key=itemgetter('count'), reverse=True):
+                            if item['count'] > 0:
+                                tag_list.append(item['name'])
                 tag_list = tag_list[:5]
             else:
                 # No 'artist' specified.  Log as an error.
