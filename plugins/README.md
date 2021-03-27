@@ -62,6 +62,15 @@ This plugin provides specialized album and track variables for use in naming scr
 -------
 -->
 
+## Album Level Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/album_level_tags/album_level_tags.zip)\]
+
+This plugin provides the ability to access album level tags from scripts run during track processing.  The plugin
+adds three new scripting functions to set, get and unset variables that are common to all tracks for an album. This
+allows things like finding and storing the earliest recording date of all of the tracks on the album.  Each album's
+information is stored separately, and is reset when the album is refreshed. The information is cleared when an album
+is removed.
+
+--------
 ## Data Dumper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/data_dumper/data_dumper.zip)\]
 
 This plugin saves the output for the track and release metadata to a text file.  By default, the file is called 'data_dump.txt' and it is saved in the file naming destination directory.
