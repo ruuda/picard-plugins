@@ -12,6 +12,10 @@ The following people have contributed to the development of this plugin.
 
 The following identifies the development history of the plugin, in reverse chronological order.  Each version lists the changes made for that version, along with the author of each change.
 
+### Version 0.7.1
+
+* Use 'n/a' in lists when legal name is not available.  Continue to use standardized names for missing legal names in artists strings. \[rdswift\]
+
 ### Version 0.7
 
 * Add artist legal name variables. \[rdswift\]
