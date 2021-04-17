@@ -62,6 +62,19 @@ This plugin provides specialized album and track variables for use in naming scr
 -------
 -->
 
+## Keep Only Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/keep_only_tags/keep_only_tags.zip)\]
+
+This plugin allows the user to determine which tags are written to the output files by Picard. Tags that you wish to keep are entered in a page
+in the options settings, with each tag on a separate line. Blank lines will be ignored. The entries are not case-sensitive.
+
+If a tag in the list ends with an asterisk (\*), then it will keep any tags beginning with the tag.  For example, if your list contains "**performer:\***"
+then all tags beginning with "**performer:**" will be kept, such as "**performer:instrument**" and "**performer:vocals**".
+
+All tags that are removed will still be available as variables with "**\_ko\_**" prepended to the tag name. For example, if you choose not to keep the
+"**musicbrainz_trackid**" tag, it will still be available to scripts as "**_ko_musicbrainz_trackid**".
+
+---
+
 ## Album Level Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/album_level_tags/album_level_tags.zip)\]
 
 This plugin provides the ability to access album level tags from scripts run during track processing.  The plugin
