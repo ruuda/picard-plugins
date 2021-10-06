@@ -140,7 +140,7 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 This plugin adds a right click option on an album to submit the ISRCs to the MusicBrainz server specified in the Option settings.
 
-Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/ssubmit_isrc/docs/README.md) for more information.
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/submit_isrc/docs/README.md) for more information.
 
 -------
 
