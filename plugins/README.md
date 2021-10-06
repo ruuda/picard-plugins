@@ -136,6 +136,14 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 -------
 
+## Submit ISRC  \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/submit_isrc/submit_isrc.zip)\]
+
+This plugin adds a right click option on an album to submit the ISRCs to the MusicBrainz server specified in the Option settings.
+
+Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/ssubmit_isrc/docs/README.md) for more information.
+
+-------
+
 ## Label Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/label_variables/label_variables.zip)\]
 
 This plugin provides variables containing label information for a release for use in user or file naming scripts.
