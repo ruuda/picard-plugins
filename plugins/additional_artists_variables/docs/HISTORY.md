@@ -12,6 +12,10 @@ The following people have contributed to the development of this plugin.
 
 The following identifies the development history of the plugin, in reverse chronological order.  Each version lists the changes made for that version, along with the author of each change.
 
+### Version 0.8.1
+
+* Add default values to multi-value variables **_artists_album_all_types**, **_artists_album_all_join_phrases**, **_artists_track_all_types** and **_artists_track_all_join_phrases** if the join phrases or or artist types are empty. \[rdswift\]
+
 ### Version 0.8
 
 * Add multi-value variables **_artists_album_all_types**, **_artists_album_all_join_phrases**, **_artists_track_all_types** and **_artists_track_all_join_phrases** to provide artist types (e.g. Person, Group, Character, etc.) and join phrases used between multiple artists. \[rdswift\]
