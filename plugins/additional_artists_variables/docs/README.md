@@ -45,6 +45,8 @@ variables provided by this plugin.
 * **_artists_album_all_cred_multi** - All album artists listed (as credited), as a multi-value
 * **_artists_album_all_legal_multi** - All album artists listed (legal names), as a multi-value
 * **_artists_album_all_sort_primary** - The primary / first album artist listed (sort name) followed by all additional album artists (standardized), separated by strings provided from the release entry
+* **_artists_album_all_types** - All album artist types, as a multi-value
+* **_artists_album_all_join_phrases** - All album artist join phrases, as a multi-value
 * **_artists_album_all_count** - The number of artists listed as album artists
 
 ### Track Variables
@@ -72,6 +74,8 @@ variables provided by this plugin.
 * **_artists_track_all_cred_multi** - All track artists listed (as credited), as a multi-value
 * **_artists_track_all_legal_multi** - All track artists listed (legal names), as a multi-value
 * **_artists_track_all_sort_primary** - The primary / first track artist listed (sort name) followed by all additional track artists (standardized), separated by strings provided from the track entry
+* **_artists_track_all_types** - All track artist types, as a multi-value
+* **_artists_track_all_join_phrases** - All track artist join phrases, as a multi-value
 * **_artists_track_all_count** - The number of artists listed as track artists
 
 ***NOTE:*** If a legal name alias is not available for an artist, the standardized name will be used for **_artists_album_additional_legal**, **_artists_album_all_legal**, **_artists_track_additional_legal** and **_artists_track_all_legal**, 'n/a' will be used in **_artists_album_additional_legal_multi**, **_artists_album_all_legal_multi**, **_artists_track_additional_legal_multi** and **_artists_track_all_legal_multi**, and the variables **_artists_album_primary_legal**, **_artists_album_primary_sort_legal**, **_artists_track_primary_legal** and **_artists_track_primary_sort_legal** will not be set if there is no legal name alias available for the primary (first) artist.
@@ -96,8 +100,9 @@ by [Walk Off The Earth](https://musicbrainz.org/artist/e2a5eaeb-7de7-4ffe-a519-e
 * **_artists_album_all_cred** = Gianni and Sarah
 * **_artists_album_all_sort** = Walk off The Earth
 * **_artists_album_all_legal** = Walk off the Earth
-* **_artists_album_all_legal_multi** = n/a
+* **_artists_album_all_legal_multi** = \['n/a'\]
 * **_artists_album_all_sort_primary** = Walk Off The Earth
+* **_artists_album_all_types** = \['Group'\]
 * **_artists_album_all_count** = 1
 * **_artists_track_primary_id** = e2a5eaeb-7de7-4ffe-a519-e18e427a5060
 * **_artists_track_primary_std** = Walk off The Earth
@@ -107,13 +112,14 @@ by [Walk Off The Earth](https://musicbrainz.org/artist/e2a5eaeb-7de7-4ffe-a519-e
 * **_artists_track_all_cred** = Gianni and Sarah
 * **_artists_track_all_sort** = Walk off The Earth
 * **_artists_track_all_legal** = Walk off the Earth
-* **_artists_track_all_std_multi** = Walk Off The Earth
-* **_artists_track_all_cred_multi** = Gianni and Sarah
-* **_artists_track_all_legal_multi** = n/a
+* **_artists_track_all_std_multi** = \['Walk Off The Earth'\]
+* **_artists_track_all_cred_multi** = \['Gianni and Sarah'\]
+* **_artists_track_all_legal_multi** = \['n/a'\]
 * **_artists_track_all_sort_primary** = Walk off The Earth
+* **_artists_track_all_types** = \['Group'\]
 * **_artists_track_all_count** = 1
 
-Because there is only one artist associated with this single, the **_artists_album_additional\_\***, and **_artists_track_additional\_\*** variables are not created.
+Because there is only one artist associated with this single, the **_artists_album_additional\_\***, **_artists_track_additional\_\***, **_artists_album_all_join_phrases**, and **_artists_track_all_join_phrases** variables are not created.
 Because there is no legal name alias for the artist, the **_artists_album_primary_legal**, **_artists_album_primary_sort_legal**, **_artists_track_primary_legal** and **_artists_track_primary_sort_legal** variables are not created.
 
 ### Example 2:
@@ -130,21 +136,23 @@ created are:
 * **_artists_album_primary_sort** = Blackwood, Sarah
 * **_artists_album_primary_legal** = Sarah Nicole Blackwood
 * **_artists_album_primary_sort_legal** = Blackwood, Sarah Nicole
-* **_artists_album_additional_id** = 07fa21a9-c253-4ed0-b711-d63f7965b723; 541d331c-f041-4895-b8f2-7db9e27dc5ab
+* **_artists_album_additional_id** = \['07fa21a9-c253-4ed0-b711-d63f7965b723', '541d331c-f041-4895-b8f2-7db9e27dc5ab'\]
 * **_artists_album_additional_std** = Jenni Pleau & Emily Bones
 * **_artists_album_additional_cred** = Jenni Pleau & Emily Bones
 * **_artists_album_additional_sort** = Pleau, Jenni & Bones, Emily
 * **_artists_album_additional_legal** = Jenni Pleau & Emily Bones
-* **_artists_album_additional_std_multi** = Jenni Pleau; Emily Bones
-* **_artists_album_additional_cred_multi** = Jenni Pleau; Emily Bones
-* **_artists_album_additional_sort_multi** = Pleau, Jenni; Bones, Emily
-* **_artists_album_additional_legal_multi** = n/a; n/a
+* **_artists_album_additional_std_multi** = \['Jenni Pleau', 'Emily Bones'\]
+* **_artists_album_additional_cred_multi** = \['Jenni Pleau', 'Emily Bones'\]
+* **_artists_album_additional_sort_multi** = \['Pleau, Jenni', 'Bones, Emily'\]
+* **_artists_album_additional_legal_multi** = \['n/a', 'n/a'\]
 * **_artists_album_all_std** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_album_all_cred** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_album_all_sort** = Blackwood, Sarah, Pleau, Jenni & Bones, Emily
 * **_artists_album_all_legal** = Sarah Nicole Blackwood, Jenni Pleau & Emily Bones
-* **_artists_album_all_legal_multi** = Sarah Nicole Blackwood; n/a; n/a
+* **_artists_album_all_legal_multi** = \['Sarah Nicole Blackwood', 'n/a', 'n/a'\]
 * **_artists_album_all_sort_primary** = Blackwood, Sarah, Jenni Pleau & Emily Bones
+* **_artists_album_all_join_phrases** = \[', ', ' & '\]
+* **_artists_album_all_types** = \['Person', 'Person', 'Person'\]
 * **_artists_album_all_count** = 3
 * **_artists_track_primary_id** = af7e5ea9-bd58-4346-8f78-d672e9f297f7
 * **_artists_track_primary_std** = Sarah Blackwood
@@ -152,23 +160,25 @@ created are:
 * **_artists_track_primary_sort** = Blackwood, Sarah
 * **_artists_track_primary_sort** = Blackwood, Sarah
 * **_artists_track_primary_legal** = Sarah Nicole Blackwood
-* **_artists_track_additional_id** = 07fa21a9-c253-4ed0-b711-d63f7965b723; 541d331c-f041-4895-b8f2-7db9e27dc5ab
+* **_artists_track_additional_id** = \['07fa21a9-c253-4ed0-b711-d63f7965b723', '541d331c-f041-4895-b8f2-7db9e27dc5ab'\]
 * **_artists_track_additional_std** = Jenni Pleau & Emily Bones
 * **_artists_track_additional_cred** = Jenni Pleau & Emily Bones
 * **_artists_track_additional_sort** = Pleau, Jenni & Bones, Emily
 * **_artists_track_additional_legal** = Jenni Pleau & Emily Bones
-* **_artists_track_additional_std_multi** = Jenni Pleau; Emily Bones
-* **_artists_track_additional_cred_multi** = Jenni Pleau; Emily Bones
-* **_artists_track_additional_sort_multi** = Pleau, Jenni; Bones, Emily
-* **_artists_track_additional_legal_multi** = n/a; n/a
+* **_artists_track_additional_std_multi** = \['Jenni Pleau', 'Emily Bones'\]
+* **_artists_track_additional_cred_multi** = \['Jenni Pleau', 'Emily Bones'\]
+* **_artists_track_additional_sort_multi** = \['Pleau, Jenni', 'Bones, Emily'\]
+* **_artists_track_additional_legal_multi** = \['n/a', 'n/a'\]
 * **_artists_track_all_std** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_track_all_cred** = Sarah Blackwood, Jenni Pleau & Emily Bones
 * **_artists_track_all_sort** = Blackwood, Sarah, Pleau, Jenni & Bones, Emily
 * **_artists_track_all_legal** = Sarah Nicole Blackwood, Jenni Pleau & Emily Bones
-* **_artists_track_all_std_multi** = Sarah Blackwood; Jenni Pleau; Emily Bones
-* **_artists_track_all_cred_multi** = Sarah Blackwood; Jenni Pleau; Emily Bones
-* **_artists_track_all_legal_multi** = Sarah Nicole Blackwood; n/a; n/a
+* **_artists_track_all_std_multi** = \['Sarah Blackwood', 'Jenni Pleau', 'Emily Bones'\]
+* **_artists_track_all_cred_multi** = \['Sarah Blackwood', 'Jenni Pleau', 'Emily Bones'\]
+* **_artists_track_all_legal_multi** = \['Sarah Nicole Blackwood', 'n/a', 'n/a'\]
 * **_artists_track_all_sort_primary** = Blackwood, Sarah, Jenni Pleau & Emily Bones
+* **_artists_track_all_join_phrases** = \[', ', ' & '\]
+* **_artists_track_all_types** = \['Person', 'Person', 'Person'\]
 * **_artists_track_all_count** = 3
 
 Because there are multiple artists associated with both the album and the track, all artist variables are created.
@@ -188,11 +198,12 @@ by [Linda Ronstadt](https://musicbrainz.org/artist/498f2581-be21-4eef-8756-fbb89
 * **_artists_album_all_std** = The Muppets
 * **_artists_album_all_cred** = The Muppets
 * **_artists_album_all_sort** = Muppets, The
-* **_artists_album_all_std_multi** = The Muppets
-* **_artists_album_all_cred_multi** = The Muppets
+* **_artists_album_all_std_multi** = \['The Muppets'\]
+* **_artists_album_all_cred_multi** = \['The Muppets'\]
 * **_artists_album_all_legal** = The Muppets
-* **_artists_album_all_legal_multi** = n/a
+* **_artists_album_all_legal_multi** = \['n/a'\]
 * **_artists_album_all_sort_primary** = Muppets, The
+* **_artists_album_all_types** = \['Group'\]
 * **_artists_album_all_count** = 1
 * **_artists_track_primary_id** = 498f2581-be21-4eef-8756-fbb89d79b1c0
 * **_artists_track_primary_std** = Linda Ronstadt
@@ -200,23 +211,25 @@ by [Linda Ronstadt](https://musicbrainz.org/artist/498f2581-be21-4eef-8756-fbb89
 * **_artists_track_primary_sort** = Ronstadt, Linda
 * **_artists_track_primary_legal** = Linda Maria Ronstadt
 * **_artists_track_primary_sort_legal** = Ronstadt, Linda Maria
-* **_artists_track_additional_id** = 992a7ea8-96c1-4058-ba96-f811c8d01c77
+* **_artists_track_additional_id** = \['992a7ea8-96c1-4058-ba96-f811c8d01c77'\]
 * **_artists_track_additional_std** = Kermit the Frog
 * **_artists_track_additional_cred** = Kermit the Frog
 * **_artists_track_additional_sort** = Kermit the Frog
 * **_artists_track_additional_legal** = Kermit the Frog
-* **_artists_track_additional_std_multi** = Kermit the Frog
-* **_artists_track_additional_cred_multi** = Kermit the Frog
-* **_artists_track_additional_sort_multi** = Kermit the Frog
-* **_artists_album_additional_legal_multi** = n/a
+* **_artists_track_additional_std_multi** = \['Kermit the Frog'\]
+* **_artists_track_additional_cred_multi** = \['Kermit the Frog'\]
+* **_artists_track_additional_sort_multi** = \['Kermit the Frog'\]
+* **_artists_album_additional_legal_multi** = \['n/a'\]
 * **_artists_track_all_std** = Linda Ronstadt and Kermit the Frog
 * **_artists_track_all_cred** = Linda Ronstadt and Kermit the Frog
 * **_artists_track_all_sort** = Ronstadt, Linda and Kermit the Frog
 * **_artists_track_all_legal** = Linda Maria Ronstadt and Kermit the Frog
-* **_artists_track_all_std_multi** = Linda Ronstadt; Kermit the Frog
-* **_artists_track_all_cred_multi** = Linda Ronstadt; Kermit the Frog
-* **_artists_track_all_legal_multi** = Linda Maria Ronstadt; n/a
+* **_artists_track_all_std_multi** = \['Linda Ronstadt', 'Kermit the Frog'\]
+* **_artists_track_all_cred_multi** = \['Linda Ronstadt', 'Kermit the Frog'\]
+* **_artists_track_all_legal_multi** = \['Linda Maria Ronstadt', 'n/a'\]
 * **_artists_track_all_sort_primary** = Ronstadt, Linda and Kermit the Frog
+* **_artists_track_all_join_phrases** = \[' and '\]
+* **_artists_track_all_types** = \['Person', 'Character'\]
 * **_artists_track_all_count** = 2
 
-Because there is only one artist associated with the album the **_artists_album_additional\_\*** variables are not created.
+Because there is only one artist associated with the album the **_artists_album_additional\_\*** and **_artists_album_all_join_phrases** variables are not created.
