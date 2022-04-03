@@ -1,4 +1,4 @@
-# Key Wheel Converter \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/keywheel_converter/keywheel_converter.zip)\]
+# Key Wheel Converter \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/key_wheel_converter/key_wheel_converter.zip)\]
 
 ## Overview
 
