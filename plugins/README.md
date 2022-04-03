@@ -111,7 +111,7 @@ Please see the [user guide](https://github.com/rdswift/picard-plugins/blob/2.0_R
 
 -------
 
-## Key Wheel Converter \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/keywheel_converter/keywheel_converter.zip)\]
+## Key Wheel Converter \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/key_wheel_converter/key_wheel_converter.zip)\]
 
 This plugin provides the ability to convert key information between 'camelot', 'open key' and 'standard' formats.
 It adds three new scripting functions:
