@@ -79,7 +79,7 @@ variables provided by this plugin.
 * **_artists_track_all_count** - The number of artists listed as track artists
 
 ***NOTE:*** If a legal name alias is not available for an artist, the standardized name will be used for **_artists_album_additional_legal**, **_artists_album_all_legal**, **_artists_track_additional_legal** and **_artists_track_all_legal**, 'n/a' will be used in **_artists_album_additional_legal_multi**, **_artists_album_all_legal_multi**, **_artists_track_additional_legal_multi** and **_artists_track_all_legal_multi**, and the variables **_artists_album_primary_legal**, **_artists_album_primary_sort_legal**, **_artists_track_primary_legal** and **_artists_track_primary_sort_legal** will not be set if there is no legal name alias available for the primary (first) artist.
-If a join phrase is empty, a value of '\[missing\]' will be returned in its place. If a type is empty, a value of 'unknown' will be returned in its place.
+If a join phrase is empty, a unicode zero-length space (\\u200B) will be returned in its place. If a type is empty, a value of 'unknown' will be returned in its place.
 
 ---
 
