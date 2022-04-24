@@ -22,6 +22,18 @@ variables provided by this plugin.
 ***NOTE:*** This plugin makes no additional calls to the MusicBrainz website api for the information.
 
 -------
+
+## Persistent Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/persistent_variables/persistent_variables.zip)\]
+
+This plugin provides the ability to store and retrieve script variables that persist across tracks and albums.
+This allows things like finding and storing the earliest recording date of all of the tracks on an album.
+
+There are two types of persistent variables maintained - album variables and session variables. Album variables
+persist across all tracks on an album.  Each album's information is stored separately, and is reset when the
+album is refreshed. The information is cleared when an album is removed.  Session variables persist across all
+albums and tracks, and are cleared when Picard is shut down or restarted.
+
+-------
 <!--
 ## Artist Variables \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/artist_variables/artist_variables.zip)\]
 
@@ -73,8 +85,8 @@ then all tags beginning with "**performer:**" will be kept, such as "**performer
 All tags that are removed will still be available as variables with "**\_ko\_**" prepended to the tag name. For example, if you choose not to keep the
 "**musicbrainz_trackid**" tag, it will still be available to scripts as "**_ko_musicbrainz_trackid**".
 
----
-
+-------
+<!--
 ## Album Level Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/album_level_tags/album_level_tags.zip)\]
 
 This plugin provides the ability to access album level tags from scripts run during track processing.  The plugin
@@ -84,6 +96,7 @@ information is stored separately, and is reset when the album is refreshed. The 
 is removed.
 
 --------
+-->
 ## Data Dumper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/data_dumper/data_dumper.zip)\]
 
 This plugin saves the output for the track and release metadata to a text file.  By default, the file is called 'data_dump.txt' and it is saved in the file naming destination directory.
