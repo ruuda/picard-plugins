@@ -46,6 +46,12 @@ Gets the session persistent variable `name`.
 
 Clears all session persistent variables.
 
+## Persistent Variables Viewer
+
+You can view the persistent variables currently set by right-clicking on a file, track or album and selecting "View
+persistent variables" from the Plugins section of the context menu.  This will display the variables associated with
+the selected album as well as all session variables.
+
 ## Examples
 
 ### Example 1:
