@@ -54,24 +54,30 @@ PLUGIN_LICENSE_URL = 'https://www.gnu.org/licenses/gpl-2.0.html'
 
 PLUGIN_USER_GUIDE_URL = 'https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/persistent_variables/docs/README.md'
 
+from PyQt5 import QtWidgets
+
 from picard import log
-from picard.album import register_album_post_removal_processor, Album
+from picard.album import (
+    Album,
+    register_album_post_removal_processor,
+)
+from picard.file import File
 from picard.metadata import register_album_metadata_processor
 from picard.plugin import PluginPriority
+from picard.plugins.persistent_variables.ui_variables_dialog import (
+    Ui_VariablesDialog,
+)
 from picard.script import register_script_function
 from picard.script.parser import normalize_tagname
-
-from PyQt5 import QtWidgets, QtCore
-try:
-    from picard.util.tags import PRESERVED_TAGS
-except ImportError:
-    from picard.file import File
-    PRESERVED_TAGS = File._default_preserved_tags
-
-from picard.file import File
 from picard.track import Track
-from picard.ui.itemviews import BaseAction, register_file_action, register_track_action, register_album_action
-from picard.plugins.persistent_variables.ui_variables_dialog import Ui_VariablesDialog
+
+from picard.ui.itemviews import (
+    BaseAction,
+    register_album_action,
+    register_file_action,
+    register_track_action,
+)
+
 
 class PersistentVariables:
     album_variables = {}
