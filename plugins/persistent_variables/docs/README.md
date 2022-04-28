@@ -56,6 +56,83 @@ the selected album as well as all session variables.
 
 ### Example 1:
 
+Find the disc and album playing lengths, so that they can be included in the file metadata and used in the file naming script.
+
+Create a tagging script containing the following:
+
+```
+$if($get_a(_pt_%discnumber%_%tracknumber%),,
+  $if(%_length%,
+    $set(_pt_pos,$find(%_length%,:))
+    $if(%_pt_pos%,
+      $set(_pt_m,$add($if2($left(%_length%,%_pt_pos%),0),0))
+      $set(_pt_s,$add($if2($substr(%_length%,$add(%_pt_pos%,1)),0),0))
+      $set_a(pt_d%discnumber%_d,$if2($get_a(pt_d%discnumber%_d),0))
+      $set_a(pt_d%discnumber%_h,$if2($get_a(pt_d%discnumber%_h),0))
+      $set_a(pt_d%discnumber%_m,$add($if2($get_a(pt_d%discnumber%_m),0),%_pt_m%))
+      $set_a(pt_d%discnumber%_s,$add($if2($get_a(pt_d%discnumber%_s),0),%_pt_s%))
+      $set_a(pt_r_d,$if2($get_a(pt_r_d),0))
+      $set_a(pt_r_h,$if2($get_a(pt_r_h),0))
+      $set_a(pt_r_m,$add($if2($get_a(pt_r_m),0),%_pt_m%))
+      $set_a(pt_r_s,$add($if2($get_a(pt_r_s),0),%_pt_s%))
+      $if($gt($get_a(pt_d%discnumber%_s),59),
+        $set_a(pt_d%discnumber%_m,$add($get_a(pt_d%discnumber%_m),1))
+        $set_a(pt_d%discnumber%_s,$sub($get_a(pt_d%discnumber%_s),60))
+      )
+      $if($gt($get_a(pt_r_s),59),
+        $set_a(pt_r_m,$add($get_a(pt_r_m),1))
+        $set_a(pt_r_s,$sub($get_a(pt_r_s),60))
+      )
+      $if($gt($get_a(pt_d%discnumber%_m),59),
+        $set_a(pt_d%discnumber%_h,$add($get_a(pt_d%discnumber%_h),1))
+        $set_a(pt_d%discnumber%_m,$sub($get_a(pt_d%discnumber%_m),60))
+      )
+      $if($gt($get_a(pt_r_m),59),
+        $set_a(pt_r_h,$add($get_a(pt_r_h),1))
+        $set_a(pt_r_m,$sub($get_a(pt_r_m),60))
+      )
+      $if($gt($get_a(pt_d%discnumber%_h),23),
+        $set_a(pt_d%discnumber%_d,$add($get_a(pt_d%discnumber%_d),1))
+        $set_a(pt_d%discnumber%_h,$sub($get_a(pt_d%discnumber%_h),24))
+      )
+      $if($gt($get_a(pt_r_h),23),
+        $set_a(pt_r_d,$add($get_a(pt_r_d),1))
+        $set_a(pt_r_h,$sub($get_a(pt_r_h),24))
+      )
+      $set_a(_pt_%discnumber%_%tracknumber%,1)
+    )
+  )
+)
+```
+
+Now to make the times available as tags for all tracks, you need to create another tagging script which should be run manually just before saving the files.  This script should contain the following:
+
+```
+$set(_temp,)
+$if($gt($get_a(pt_d%discnumber%_d),0),$set(_temp,$get_a(pt_d%discnumber%_d)d $get_a(pt_d%discnumber%_h)h $get_a(pt_d%discnumber%_m)m $get_a(pt_d%discnumber%_s)s),
+  $if($gt($get_a(pt_d%discnumber%_h),0),$set(_temp,$get_a(pt_d%discnumber%_h)h $get_a(pt_d%discnumber%_m)m $get_a(pt_d%discnumber%_s)s),
+    $if($gt($get_a(pt_d%discnumber%_m),0),$set(_temp,$get_a(pt_d%discnumber%_m)m $get_a(pt_d%discnumber%_s)s),
+      $set(_temp,$get_a(pt_d%discnumber%_h)h $get_a(pt_d%discnumber%_m)m $get_a(pt_d%discnumber%_s)s)
+    )
+  )
+)
+$set(Disc Playing Time,%_temp%)
+
+$set(_temp,)
+$if($gt($get_a(pt_r_d),0),$set(_temp,$get_a(pt_r_d)d $get_a(pt_r_h)h $get_a(pt_r_m)m $get_a(pt_r_s)s),
+  $if($gt($get_a(pt_r_h),0),$set(_temp,$get_a(pt_r_h)h $get_a(pt_r_m)m $get_a(pt_r_s)s),
+    $if($gt($get_a(pt_r_m),0),$set(_temp,$get_a(pt_r_m)m $get_a(pt_r_s)s),
+      $set(_temp,$get_a(pt_r_h)h $get_a(pt_r_m)m $get_a(pt_r_s)s)
+    )
+  )
+)
+$set(Release Playing Time,%_temp%)
+```
+
+The disc and release playing times will now be stored in each of the track files under the tag names `Disc Playing Time` and `Release Playing Time`.  These tags are also available for use in the file naming script.
+
+### Example 2:
+
 Find the earliest recording date of any of the tracks on the album, so that it can be used in the file naming script.
 
 Create a tagging script containing the following:
@@ -67,7 +144,7 @@ $set_a(earliest_date,$min(%_testdate1%,$if2(%_recording_firstreleasedate%,9999))
 
 The date for the album is now available in the file naming script using `$get_a(earliest_date)`.
 
-### Example 2:
+### Example 3:
 
 Get a list of all tracks on the album so that it can be included as a tag in each of the tracks.
 
