@@ -86,6 +86,14 @@ All tags that are removed will still be available as variables with "**\_ko\_**"
 "**musicbrainz_trackid**" tag, it will still be available to scripts as "**_ko_musicbrainz_trackid**".
 
 -------
+
+## Text Compare Functions \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/text_compare_functions/text_compare_functions.zip)\]
+
+This plugin provides text-based comparison scripting functions similar to the integer-based comparison functions
+`$lt()`, `$lte()`, `$gt()` and `$gte()`, plus two additional functions to find the minimum and maximum values using
+a text-based comparison.  These can be used for comparing non-integer values such as dates.
+
+-------
 <!--
 ## Album Level Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/album_level_tags/album_level_tags.zip)\]
 
