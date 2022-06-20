@@ -2,13 +2,9 @@
 
 ## Overview
 
-This plugin provides the ability to store and retrieve script variables that persist across tracks and albums.
-This allows things like finding and storing the earliest recording date of all of the tracks on an album.
+This plugin provides the ability to store and retrieve script variables that persist across tracks and albums.  This allows things like finding and storing the earliest recording date of all of the tracks on an album.
 
-There are two types of persistent variables maintained - album variables and session variables. Album variables
-persist across all tracks on an album.  Each album's information is stored separately, and is reset when the
-album is refreshed. The information is cleared when an album is removed.  Session variables persist across all
-albums and tracks, and are cleared when Picard is shut down or restarted.
+There are two types of persistent variables maintained - album variables and session variables. Album variables persist across all tracks on an album.  Each album's information is stored separately, and is reset when the album is refreshed. The information is cleared when an album is removed.  Session variables persist across all albums and tracks, and are cleared when Picard is shut down or restarted.
 
 ## Scripting Functions Added
 
@@ -48,13 +44,11 @@ Clears all session persistent variables.
 
 ## Persistent Variables Viewer
 
-You can view the persistent variables currently set by right-clicking on a file, track or album and selecting "View
-persistent variables" from the Plugins section of the context menu.  This will display the variables associated with
-the selected album as well as all session variables.
+You can view the persistent variables currently set by right-clicking on a file, track or album and selecting "View persistent variables" from the Plugins section of the context menu.  This will display the variables associated with the selected album as well as all session variables.
 
 ## Examples
 
-### Example 1:
+### Example 1
 
 Find the disc and album playing lengths, so that they can be included in the file metadata and used in the file naming script.
 
@@ -131,7 +125,7 @@ $set(Release Playing Time,%_temp%)
 
 The disc and release playing times will now be stored in each of the track files under the tag names `Disc Playing Time` and `Release Playing Time`.  These tags are also available for use in the file naming script.
 
-### Example 2:
+### Example 2
 
 Find the earliest recording date of any of the tracks on the album, so that it can be used in the file naming script.
 
@@ -144,7 +138,29 @@ $set_a(earliest_date,$min(%_testdate1%,$if2(%_recording_firstreleasedate%,9999))
 
 The date for the album is now available in the file naming script using `$get_a(earliest_date)`.
 
-### Example 3:
+### Example 3
+
+If you prefer the genre from first track of the album to be the new genre tag for all tracks.
+
+First, from the [Genres](https://picard-docs.musicbrainz.org/en/config/options_genres.html) section of the Metadata Options, set the maximum number of genres to 1.  You might also want to enable the "Fall back on album's artists genres..." setting.  This will help ensure that you end up with one and only one genre per track (although they may still be different between tracks at this point).
+
+The next step is to create a new tagging script in the [Scripting Options](https://picard-docs.musicbrainz.org/en/config/options_scripting.html) page.  The script should be enabled (checked) and the "Enable Tagger Script(s)" option should also be checked.  The script should contain the following:
+
+```
+$if($and($eq(%tracknumber%,1),$eq(%discnumber%,1)),$set_a(_common_genre,%genre%))
+```
+
+This script retrieves the value of the `%genre%` tag from the first track on the first CD and stores it in a special album-level variable called `_common_genre`.
+
+Now create another tagging script after (below) the one just created, and make sure that it is also enabled.  This new script should contain the following:
+
+```
+$set(genre,$if2($get_a(_common_genre),None))
+```
+
+This script retrieves the value of the album-level variable `_common_genre` saved in the first script, and stores it in the `%genre%` tag for each of the tracks in the album.  If there was no genre found for the first track of the first disc, the `%genre%` tag will be set to "None".  If you would like a different default genre value to be used, simply replace "None" in the second script with your preferred default.
+
+### Example 4
 
 Get a list of all tracks on the album so that it can be included as a tag in each of the tracks.
 
