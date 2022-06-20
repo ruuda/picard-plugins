@@ -177,3 +177,25 @@ $set(all_tracks,$get_a(all_tracks))
 ```
 
 The complete track list will now be stored in each of the track files under the tag name `all_tracks`.
+
+### Example 5
+
+Renumber album tracks to remove the first track from Mixed Mode CDs, where the first track is a data track.
+
+The first step is to create a new tagging script in the [Scripting Options](https://picard-docs.musicbrainz.org/en/config/options_scripting.html) page.  The script should be enabled (checked) and the "Enable Tagger Script(s)" option should also be checked.  The script should contain the following:
+
+```
+$set(_old_tracknumber,$if2(%_old_tracknumber%,%tracknumber%))
+$set(_old_totaltracks,$if2(%_old_totaltracks%,%totaltracks%))
+$if($and($eq(%tracknumber%,1),$in(%title%,[data)),$set_a(_first_track_is_data,1))
+```
+
+This script first stores the original values of the `%tracknumber%` and `%totaltracks%` tags and saves them in backup variables for later use.  It then checks if the `%title%` tag from the first track on the CD contains "\[data" (matching \[data\] or \[data track\]).  If it matches, then "1" is stored in a special album-level variable called `_first_track_is_data`.
+
+Now create another tagging script after (below) the one just created, and make sure that it is also enabled.  This new script should contain the following:
+
+```
+$if($get_a(_first_track_is_data),$set(tracknumber,$sub(%_old_tracknumber%,1))$set(totaltracks,$sub(%_old_totaltracks%,1)))
+```
+
+This script retrieves the value of the album-level variable `_first_track_is_data` saved in the first script, and if the value is set then the `%tracknumber%` and `%totaltracks%` values for each of the tracks in the album are set to their original values (stored in the temporary variables in the first script) minus one.
