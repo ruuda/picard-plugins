@@ -74,6 +74,12 @@ This plugin provides specialized album and track variables for use in naming scr
 -------
 -->
 
+## Genre Mapper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/genre_mapper/genre_mapper.zip)\]
+
+This plugin provides the ability to standardize genres in the "genre" tag by matching the genres as found to a standard genre as defined in the genre replacement mapping configuration option. Once installed a settings page will be added to Picard's options, which is where the plugin is configured.
+
+-------
+
 ## Keep Only Tags \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/keep_only_tags/keep_only_tags.zip)\]
 
 This plugin allows the user to determine which tags are written to the output files by Picard. Tags that you wish to keep are entered in a page
