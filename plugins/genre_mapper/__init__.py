@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2021 Bob Swift (rdswift)
+# Copyright (C) 2022 Bob Swift (rdswift)
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -20,12 +20,15 @@
 PLUGIN_NAME = 'Genre Mapper'
 PLUGIN_AUTHOR = 'Bob Swift'
 PLUGIN_DESCRIPTION = '''
-Standardize genres in the "genre" tag by matching the genres as found to a standard
-genre as defined in the genre replacement mapping configuration option.
+This plugin provides the ability to standardize genres in the "genre"
+tag by matching the genres as found to a standard genre as defined in
+the genre replacement mapping configuration option. Once installed a
+settings page will be added to Picard's options, which is where the
+plugin is configured.
 <br /><br />
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/genre_mapper/docs/README.md">user guide</a> on GitHub for more information.
 '''
-PLUGIN_VERSION = '0.1'
+PLUGIN_VERSION = '0.2'
 PLUGIN_API_VERSIONS = ['2.0', '2.1', '2.2', '2.3', '2.6', '2.7', '2.8']
 PLUGIN_LICENSE = "GPL-2.0"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.txt"
@@ -53,6 +56,7 @@ from picard.ui.options import (
 
 pairs_split = re.compile(r"\r\n|\n\r|\n").split
 
+OPT_MATCH_ENABLED = 'genre_mapper_enabled'
 OPT_MATCH_PAIRS = 'genre_mapper_replacement_pairs'
 OPT_MATCH_FIRST = 'genre_mapper_apply_first_match_only'
 
@@ -66,10 +70,11 @@ class GenreMapperOptionsPage(OptionsPage):
     options = [
         config.TextOption("setting", OPT_MATCH_PAIRS, ''),
         config.BoolOption("setting", OPT_MATCH_FIRST, False),
+        config.BoolOption("setting", OPT_MATCH_ENABLED, False),
     ]
 
     def __init__(self, parent=None):
-        super(GenreMapperOptionsPage, self).__init__(parent)
+        super().__init__(parent)
         self.ui = Ui_GenreMapperOptionsPage()
         self.ui.setupUi(self)
 
@@ -77,53 +82,69 @@ class GenreMapperOptionsPage(OptionsPage):
         # Enable external link
         self.ui.format_description.setOpenExternalLinks(True)
 
-        # Replacement settings
         self.ui.genre_mapper_replacement_pairs.setPlainText(config.setting[OPT_MATCH_PAIRS])
         self.ui.genre_mapper_first_match_only.setChecked(config.setting[OPT_MATCH_FIRST])
+        self.ui.cb_enable_genre_mapping.setChecked(config.setting[OPT_MATCH_ENABLED])
+
+        self.ui.cb_enable_genre_mapping.stateChanged.connect(self._set_enabled_state)
+        self._set_enabled_state()
 
     def save(self):
-        # Replacement settings
         config.setting[OPT_MATCH_PAIRS] = self.ui.genre_mapper_replacement_pairs.toPlainText()
         config.setting[OPT_MATCH_FIRST] = self.ui.genre_mapper_first_match_only.isChecked()
+        config.setting[OPT_MATCH_ENABLED] = self.ui.cb_enable_genre_mapping.isChecked()
+
+    def _set_enabled_state(self, *args):
+        self.ui.gm_replacement_pairs.setEnabled(self.ui.cb_enable_genre_mapping.isChecked())
 
 
 def make_re(map_string):
-    re_string = str(map_string).strip()
-    re_string = map_string.replace('.', '\n').replace('*', '.*').replace('?', '.').replace('\n', '\\.')
+    # Replace period with temporary placeholder character (newline) for later retrieval
+    re_string = str(map_string).strip().replace('.', '\n')
+    # Convert wildcard characters to regular expression equivalents
+    re_string = re_string.replace('*', '.*').replace('?', '.')
+    # Escape carat and dollar sign for regular expression
     re_string = re_string.replace('^', '\\^').replace('$', '\\$')
-    return '^' + re_string + '$'
+    # Replace temporary placeholder characters with escaped periods
+    re_string = '^' + re_string.replace('\n', '\\.') + '$'
+    # Return regular expression with carat and dollar sign to force match condition on full string
+    return re_string
 
 
 def track_genre_mapper(album, metadata, *args):
+    _config = config.get_config()
+    if not _config.setting[OPT_MATCH_ENABLED]:
+        return
     if 'genre' not in metadata or not metadata['genre']:
-        log.debug("%s: No genres found for %s", PLUGIN_NAME, metadata['title'],)
+        log.debug("%s: No genres found for: \"%s\"", PLUGIN_NAME, metadata['title'],)
         return
     replacements = []
-    for pair in pairs_split(config.setting[OPT_MATCH_PAIRS]):
+    for pair in pairs_split(_config.setting[OPT_MATCH_PAIRS]):
         if "=" not in pair:
             continue
         original, replacement = pair.split('=', 1)
         original = original.strip()
         replacement = replacement.strip()
         if not original:
-            log.warning('%s: Missing genre mapping pair: "%s" = "%s"', PLUGIN_NAME, original, replacement,)
             continue
         replacements.append((make_re(original), replacement))
         log.debug('%s: Add genre mapping pair: "%s" = "%s"', PLUGIN_NAME, original, replacement,)
     if not replacements:
-        log.warning("%s: No genre replacement maps defined.", PLUGIN_NAME,)
+        log.debug("%s: No genre replacement maps defined.", PLUGIN_NAME,)
         return
-    genres = {}
+    genres = set()
     metadata_genres = str(metadata['genre']).split(MULTI_VALUED_JOINER)
     for genre in metadata_genres:
         for (original, replacement) in replacements:
             if genre and re.fullmatch(original, genre, re.IGNORECASE):
                 genre = replacement
-                if config.setting[OPT_MATCH_FIRST]:
+                if _config.setting[OPT_MATCH_FIRST]:
                     break
         if genre:
-            genres[genre.title()] = True
-    metadata['genre'] = [x for x in genres.keys()]
+            genres.add(genre.title())
+    genres = sorted(genres)
+    log.debug("{0}: Genres updated from {1} to {2}".format(PLUGIN_NAME, metadata_genres, genres,))
+    metadata['genre'] = genres
 
 
 # Register the plugin to run at a LOW priority.

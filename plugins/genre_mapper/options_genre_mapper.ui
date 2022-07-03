@@ -87,7 +87,17 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="cb_enable_genre_mapping">
+       <property name="text">
+        <string>Enable genre mapping</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QGroupBox" name="gm_replacement_pairs">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>
