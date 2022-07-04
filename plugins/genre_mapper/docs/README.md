@@ -29,9 +29,7 @@ There is also a setting which allows the user to choose whether or not to apply 
 Suppose that you want to combine all the different types of rock genres (e.g. Country Rock, Hard Rock, Progressive Rock, Punk Rock, Rock 'n' Roll) into a single "Rock" entry.  This could be done using the following matching pairs configuration:
 
 ```
-=============================
-= Combine all "Rock" genres =
-=============================
+= Combine all "Rock" genres
 *rock*=Rock
 ```
 
@@ -41,14 +39,10 @@ Suppose that you want to combine all the different types of rock genres (e.g. Co
 Similar to Example 1, except that you want to keep "Punk Rock" separate from "Rock".  This could be done by enabling the "Apply only the first matching replacement" option and using the following matching pairs configuration:
 
 ```
-====================
-= Keep "Punk Rock" =
-====================
+= Keep "Punk Rock"
 punk rock=Punk Rock
 
-=============================
-= Combine all "Rock" genres =
-=============================
+= Combine all "Rock" genres
 *rock*=Rock
 ```
 
@@ -60,25 +54,37 @@ This would cause a genre of "Punk Rock" to match the first test, keep the genre 
 Similar to Example 2, except that you want to keep processing rather than stop on the first match.  This could be done by disabling the "Apply only the first matching replacement" option and using the following matching pairs configuration:
 
 ```
-================================================
-= Keep "Punk Rock" as temporary "Temp1" tag so =
-= that it doesn't match any following lines    =
-================================================
+= Keep "Punk Rock" as temporary "Temp1" tag so
+= that it doesn't match any following lines
 punk rock=Temp1
 
-=============================
-= Combine all "Rock" genres =
-=============================
+= Combine all "Rock" genres
 *rock*=Rock
 
 ===========================================
 = Additional processing pairs as required =
 ===========================================
 
-==============================================
-= Change the "Temp1" tag back to "Punk Rock" =
-==============================================
+= Change the "Temp1" tag back to "Punk Rock"
 temp1=Punk Rock
 ```
 
 This would cause a genre of "Punk Rock" to match the first test, changing the genre to "Temp1" (not matched in any of the following processing pairs) and continue processing.  The final processing pair matches the "Temp1" genre set earlier and changes the genre back to "Punk Rock".
+
+
+### Example 4
+
+Perhaps you want to remove all "Pop" genres, including genres where "Pop" is part of a hyphenated word (e.g. K-Pop) but not where "pop" is part of another word (e.g. Popular).  This could be done by using the following matching pairs configuration:
+
+```
+= Remove all "Pop" genres
+= Done in 6 entries to only match "Pop"
+= as a separate word or as part of a
+= hyphenated word such as "K-Pop"
+pop=
+pop *=
+* pop=
+* pop *=
+*-pop=
+*-pop *=
+```
