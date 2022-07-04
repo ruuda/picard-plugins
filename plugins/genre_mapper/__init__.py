@@ -28,7 +28,7 @@ plugin is configured.
 <br /><br />
 Please see the <a href="https://github.com/rdswift/picard-plugins/blob/2.0_RDS_Plugins/plugins/genre_mapper/docs/README.md">user guide</a> on GitHub for more information.
 '''
-PLUGIN_VERSION = '0.2'
+PLUGIN_VERSION = '0.3'
 PLUGIN_API_VERSIONS = ['2.0', '2.1', '2.2', '2.3', '2.6', '2.7', '2.8']
 PLUGIN_LICENSE = "GPL-2.0"
 PLUGIN_LICENSE_URL = "https://www.gnu.org/licenses/gpl-2.0.txt"
@@ -59,6 +59,43 @@ pairs_split = re.compile(r"\r\n|\n\r|\n").split
 OPT_MATCH_ENABLED = 'genre_mapper_enabled'
 OPT_MATCH_PAIRS = 'genre_mapper_replacement_pairs'
 OPT_MATCH_FIRST = 'genre_mapper_apply_first_match_only'
+
+
+class GenreMappingPairs():
+    pairs = []
+
+    @classmethod
+    def refresh(cls):
+        log.debug("%s: Refreshing the genre replacement maps processing pairs.", PLUGIN_NAME,)
+        if not config.Option.exists("setting", OPT_MATCH_PAIRS):
+            log.warning("%s: Unable to read the '%s' setting.", PLUGIN_NAME, OPT_MATCH_PAIRS,)
+            return
+
+        def _make_re(map_string):
+            # Replace period with temporary placeholder character (newline)
+            re_string = str(map_string).strip().replace('.', '\n')
+            # Convert wildcard characters to regular expression equivalents
+            re_string = re_string.replace('*', '.*').replace('?', '.')
+            # Escape carat and dollar sign for regular expression
+            re_string = re_string.replace('^', '\\^').replace('$', '\\$')
+            # Replace temporary placeholder characters with escaped periods
+            re_string = '^' + re_string.replace('\n', '\\.') + '$'
+            # Return regular expression with carat and dollar sign to force match condition on full string
+            return re_string
+
+        cls.pairs = []
+        for pair in pairs_split(config.setting[OPT_MATCH_PAIRS]):
+            if "=" not in pair:
+                continue
+            original, replacement = pair.split('=', 1)
+            original = original.strip()
+            if not original:
+                continue
+            replacement = replacement.strip()
+            cls.pairs.append((_make_re(original), replacement))
+            log.debug('%s: Add genre mapping pair: "%s" = "%s"', PLUGIN_NAME, original, replacement,)
+        if not cls.pairs:
+            log.debug("%s: No genre replacement maps defined.", PLUGIN_NAME,)
 
 
 class GenreMapperOptionsPage(OptionsPage):
@@ -94,51 +131,25 @@ class GenreMapperOptionsPage(OptionsPage):
         config.setting[OPT_MATCH_FIRST] = self.ui.genre_mapper_first_match_only.isChecked()
         config.setting[OPT_MATCH_ENABLED] = self.ui.cb_enable_genre_mapping.isChecked()
 
+        GenreMappingPairs.refresh()
+
     def _set_enabled_state(self, *args):
         self.ui.gm_replacement_pairs.setEnabled(self.ui.cb_enable_genre_mapping.isChecked())
 
 
-def make_re(map_string):
-    # Replace period with temporary placeholder character (newline) for later retrieval
-    re_string = str(map_string).strip().replace('.', '\n')
-    # Convert wildcard characters to regular expression equivalents
-    re_string = re_string.replace('*', '.*').replace('?', '.')
-    # Escape carat and dollar sign for regular expression
-    re_string = re_string.replace('^', '\\^').replace('$', '\\$')
-    # Replace temporary placeholder characters with escaped periods
-    re_string = '^' + re_string.replace('\n', '\\.') + '$'
-    # Return regular expression with carat and dollar sign to force match condition on full string
-    return re_string
-
-
 def track_genre_mapper(album, metadata, *args):
-    _config = config.get_config()
-    if not _config.setting[OPT_MATCH_ENABLED]:
+    if not config.setting[OPT_MATCH_ENABLED]:
         return
     if 'genre' not in metadata or not metadata['genre']:
         log.debug("%s: No genres found for: \"%s\"", PLUGIN_NAME, metadata['title'],)
         return
-    replacements = []
-    for pair in pairs_split(_config.setting[OPT_MATCH_PAIRS]):
-        if "=" not in pair:
-            continue
-        original, replacement = pair.split('=', 1)
-        original = original.strip()
-        replacement = replacement.strip()
-        if not original:
-            continue
-        replacements.append((make_re(original), replacement))
-        log.debug('%s: Add genre mapping pair: "%s" = "%s"', PLUGIN_NAME, original, replacement,)
-    if not replacements:
-        log.debug("%s: No genre replacement maps defined.", PLUGIN_NAME,)
-        return
     genres = set()
     metadata_genres = str(metadata['genre']).split(MULTI_VALUED_JOINER)
     for genre in metadata_genres:
-        for (original, replacement) in replacements:
+        for (original, replacement) in GenreMappingPairs.pairs:
             if genre and re.fullmatch(original, genre, re.IGNORECASE):
                 genre = replacement
-                if _config.setting[OPT_MATCH_FIRST]:
+                if config.setting[OPT_MATCH_FIRST]:
                     break
         if genre:
             genres.add(genre.title())
@@ -150,3 +161,5 @@ def track_genre_mapper(album, metadata, *args):
 # Register the plugin to run at a LOW priority.
 register_track_metadata_processor(track_genre_mapper, priority=PluginPriority.LOW)
 register_options_page(GenreMapperOptionsPage)
+
+GenreMappingPairs.refresh()
