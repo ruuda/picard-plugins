@@ -16,7 +16,9 @@ The settings panel allows the user to provide a list of the original/replacement
 [genre match test string]=[replacement genre]
 ```
 
-Supported wildcards in the test string part of the mapping include '*' and '?' to match any number of characters and a single character respectively.  Blank lines and lines beginning with an equals sign (=) will be ignored. If the replacement part of the pair is blank, any matching genres will be removed. Case-insensitive tests are used when matching. Replacements will be made in the order they are found in the list.
+Unless the "Match tests are entered as regular expressions" option is enabled, supported wildcards in the test string part of the mapping include '*' and '?' to match any number of characters and a single character respectively.  If the "Match tests are entered as regular expressions" option is enabled, then the match test string portion of **every** pair must be entered as a regular expression.  Leading and trailing spaces will be removed from all match test strings and replacement strings before processing.
+
+Blank lines and lines beginning with an equals sign (=) will be ignored. If the replacement part of the pair is blank, any matching genres will be removed. Case-insensitive tests are used when matching. Replacements will be made in the order they are found in the list.
 
 There is also a setting which allows the user to choose whether or not to apply the first matching pair only, or continue processing the remaining pairs with the updated genre.  By default, all of the pairs are processed.
 
@@ -87,4 +89,15 @@ pop *=
 * pop *=
 *-pop=
 *-pop *=
+```
+
+### Example 5
+
+Similar to Example 4, except that the "Match tests are entered as regular expressions" option is enabled, allowing the matching pairs configuration to be simplified to a single line as:
+
+```
+= Remove all "Pop" genres
+= Only match "Pop" as a separate word or as
+= part of a hyphenated word such as "K-Pop"
+^.*-?pop(\s+.*)?$=
 ```
