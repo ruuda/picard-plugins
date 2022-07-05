@@ -99,5 +99,5 @@ Similar to Example 4, except that the "Match tests are entered as regular expres
 = Remove all "Pop" genres
 = Only match "Pop" as a separate word or as
 = part of a hyphenated word such as "K-Pop"
-^.*-?pop(\s+.*)?$=
+^.*-?pop(\s.*)?$=
 ```
