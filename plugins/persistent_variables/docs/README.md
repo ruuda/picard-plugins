@@ -148,17 +148,10 @@ The next step is to create a new tagging script in the [Scripting Options](https
 
 ```
 $if($and($eq(%tracknumber%,1),$eq(%discnumber%,1)),$set_a(_common_genre,%genre%))
-```
-
-This script retrieves the value of the `%genre%` tag from the first track on the first CD and stores it in a special album-level variable called `_common_genre`.
-
-Now create another tagging script after (below) the one just created, and make sure that it is also enabled.  This new script should contain the following:
-
-```
 $set(genre,$if2($get_a(_common_genre),None))
 ```
 
-This script retrieves the value of the album-level variable `_common_genre` saved in the first script, and stores it in the `%genre%` tag for each of the tracks in the album.  If there was no genre found for the first track of the first disc, the `%genre%` tag will be set to "None".  If you would like a different default genre value to be used, simply replace "None" in the second script with your preferred default.
+This script retrieves the value of the `%genre%` tag from the first track on the first CD and stores it in a special album-level variable called `_common_genre`.  It then stores it in the `%genre%` tag for each of the tracks in the album.  If there was no genre found for the first track of the first disc, the `%genre%` tag will be set to "None".  If you would like a different default genre value to be used, simply replace "None" in the second script with your preferred default.
 
 ### Example 4
 
@@ -187,15 +180,33 @@ The first step is to create a new tagging script in the [Scripting Options](http
 ```
 $set(_old_tracknumber,$if2(%_old_tracknumber%,%tracknumber%))
 $set(_old_totaltracks,$if2(%_old_totaltracks%,%totaltracks%))
-$if($and($eq(%tracknumber%,1),$in(%title%,[data)),$set_a(_first_track_is_data,1))
+$if($and($eq(%tracknumber%,1),$in(%title%,[data)),$set_a(_track_adjust,1))
+$if($get_a(_track_adjust),
+  $set(tracknumber,$sub(%_old_tracknumber%,1))
+  $set(totaltracks,$sub(%_old_totaltracks%,1))
+)
 ```
 
-This script first stores the original values of the `%tracknumber%` and `%totaltracks%` tags and saves them in backup variables for later use.  It then checks if the `%title%` tag from the first track on the CD contains "\[data" (matching \[data\] or \[data track\]).  If it matches, then "1" is stored in a special album-level variable called `_first_track_is_data`.
+This script first stores the original values of the `%tracknumber%` and `%totaltracks%` tags and saves them in backup variables for later use.  It then checks if the `%title%` tag from the first track on the CD contains "\[data" (matching \[data\] or \[data track\]).  If it matches, then "1" is stored in a special album-level variable called `_track_adjust`.  It then adjusts (reduces) the `%tracknumber%` and `%totaltracks%` values by one for each of the tracks in the album if the `_track_adjust` variable is set.
 
-Now create another tagging script after (below) the one just created, and make sure that it is also enabled.  This new script should contain the following:
+### Example 6
+
+When there is a pregap track (track 0), you might want to add the track 0 title to track 1 and reduce the number of total tracks by 1 to match the number of tracks excluding the pregap track.
+
+This can be done by creating a new tagging script in the [Scripting Options](https://picard-docs.musicbrainz.org/en/config/options_scripting.html) page.  The script should be enabled (checked) and the "Enable Tagger Script(s)" option should also be checked.  The script should contain the following:
 
 ```
-$if($get_a(_first_track_is_data),$set(tracknumber,$sub(%_old_tracknumber%,1))$set(totaltracks,$sub(%_old_totaltracks%,1)))
+$if($eq(%tracknumber%,0),
+  $set_a(_zero_track_title,%title% / )
+  $set_a(_new_track_count,$sub(%totaltracks%,1))
+)
+
+$if($and($get_a(_zero_track_title),$eq(%tracknumber%,1),$not($startswith(%title%,$get_a(_zero_track_title)))),
+  $set(title,$get_a(_zero_track_title)%title%)
+)
+$if($gt(%tracknumber%,0))
+  $set(totaltracks,$if2($get_a(_new_track_count),%totaltracks%))
+)
 ```
 
-This script retrieves the value of the album-level variable `_first_track_is_data` saved in the first script, and if the value is set then the `%tracknumber%` and `%totaltracks%` values for each of the tracks in the album are set to their original values (stored in the temporary variables in the first script) minus one.
+This script first stores the original title of track 0 with a separating slash in a persistent `_zero_track_title` variable.  It also stores a new (reduced) total track count in a persistent `_new_track_count` variable if there is a track number 0.  It then updates the title of track 1 to include the `_zero_track_title` variable, first checking to ensure that it hasn't already been updated, and updates the value `%totaltracks%` tag for all track numbers greater than 0 if the variable `_new_track_count` has been set.
