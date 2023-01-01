@@ -74,6 +74,14 @@ This plugin provides specialized album and track variables for use in naming scr
 -------
 -->
 
+## File Writer \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/file_writer/file_writer.zip)\]
+
+This plugin adds a scripting function to allow writing text to an output file.
+
+Usage: **$writeline(file,text\[,reset\])**
+
+This will write `text` (followed by a newline) to `file`.  The text will be appended to the file unless `reset` is set, in which case the file will be overwritten.  If the destination `file` path is not specified as an absolute path to the destination file (beginning with a Windows drive letter and colon or path separator), then the path will be considered relative to the ***Destination directory*** specified in Picard's **File Naming Options** settings.  If the target path does not exist, it will be created automatically.
+
 ## Genre Mapper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/genre_mapper/genre_mapper.zip)\]
 
 This plugin provides the ability to standardize genres in the "genre" tag by matching the genres as found to a standard genre as defined in the genre replacement mapping configuration option. Once installed a settings page will be added to Picard's options, which is where the plugin is configured.
