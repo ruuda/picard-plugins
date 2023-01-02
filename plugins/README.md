@@ -76,11 +76,17 @@ This plugin provides specialized album and track variables for use in naming scr
 
 ## File Writer \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/file_writer/file_writer.zip)\]
 
-This plugin adds a scripting function to allow writing text to an output file.
+This plugin adds scripting functions to allow writing text to an output file, and sanitizing text to ensure that it is suitable for use in a file path.
 
 Usage: **$writeline(file,text\[,reset\])**
 
 This will write `text` (followed by a newline) to `file`.  The text will be appended to the file unless `reset` is set, in which case the file will be overwritten.  If the destination `file` path is not specified as an absolute path to the destination file (beginning with a Windows drive letter and colon or path separator), then the path will be considered relative to the ***Destination directory*** specified in Picard's **File Naming Options** settings.  If the target path does not exist, it will be created automatically.
+
+Usage: **$sanitize_text(text)**
+
+This will return a sanitized version of `text` suitable for use in a file path, including applying the ***Replace non-ASCII characters***, ***Windows compatibility*** and ***Replace directory separators with*** settings specified in Picard's **File Naming Compatibility** settings.
+
+***NOTE:*** It is strongly recommended to use the `$sanitize_text()` function on all tags used in defining the file path used in the `$writeline()` function to avoid inconsistencies that might occur due to a tag including a directory separator (/) or incompatible characters.
 
 ## Genre Mapper \[[Download](https://github.com/rdswift/picard-plugins/raw/2.0_RDS_Plugins/plugins/genre_mapper/genre_mapper.zip)\]
 
